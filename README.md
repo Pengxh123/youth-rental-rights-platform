@@ -157,6 +157,20 @@ miniprogram-6/
 3. **Map feature**: Requires Tencent Maps API key configuration
 4. **Real-name authentication**: To use WeChat login, requires corresponding permission configuration
 
+## Configuration
+
+All credentials have been replaced with placeholders. Before running cloud functions or location features, fill in your own values:
+
+| Placeholder | Where | Purpose |
+|---|---|---|
+| `touristappid` | `project.config.json`, `app.js` | Replace with your Mini Program AppID for real device / cloud features |
+| `YOUR_CLOUD_ENV_ID` | `app.js`, `utils/cloud.js` | CloudBase environment ID |
+| `YOUR_TENCENT_MAP_KEY` | `app.js`, `pages/house-reference`, `pages/housing-verify` | Tencent Location Service key for reverse geocoding |
+| `YOUR_XF_APPID` / `YOUR_XF_API_KEY` / `YOUR_XF_API_SECRET` | `utils/api-config.js`, `pages/legal-consult` | iFlytek Spark API credentials (AI legal Q&A) |
+| `YOUR_GH_ID` | `app.miniapp.json` | Official account original ID (multi-platform build only) |
+
+Never commit real credentials. Prefer proxying AI requests through a cloud function instead of calling them from the client.
+
 ## Future Optimization Suggestions
 
 1. Connect real backend APIs
@@ -170,3 +184,7 @@ miniprogram-6/
 
 Current version: v1.0.0
 Last updated: May 2026
+
+## License
+
+[MIT](LICENSE)
