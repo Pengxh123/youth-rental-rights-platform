@@ -1,0 +1,144 @@
+/* pages/favorite-detail/favorite-detail.wxss */
+.page-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding-bottom: 120rpx;
+}
+
+.topic-content {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.author-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.author-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.publish-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.follow-btn {
+  padding: 10rpx 30rpx;
+  font-size: 26rpx;
+  color: #fff;
+  background: #07c160;
+  border: none;
+  border-radius: 30rpx;
+  margin-left: 20rpx;
+}
+
+.topic-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.topic-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+  flex-wrap: wrap;
+}
+
+.topic-category {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  font-size: 24rpx;
+  color: #07c160;
+  background: rgba(7, 193, 96, 0.1);
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+}
+
+.topic-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 6rpx 16rpx;
+  font-size: 24rpx;
+  color: #666;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.topic-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 30rpx;
+  display: block;
+  white-space: pre-wrap;
+}
+
+.topic-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.topic-images.one-image {
+  grid-template-columns: 1fr;
+}
+
+.topic-image {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 12rpx;
+}
+
+.topic-actions {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rpx;
+}
+
+.action-icon {
+  font-size: 44rpx;
+  margin-bottom: 8rpx;
+}
+
+.action-count {
+  font-size: 24rpx;
+  color: #666;
+}

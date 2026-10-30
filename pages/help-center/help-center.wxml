@@ -1,0 +1,104 @@
+<!-- Help Center Page -->
+<view class="page-container">
+  <!-- Guide Detail Page -->
+  <view wx:if="{{showGuideDetail}}" class="guide-detail-container">
+    <view class="guide-detail-header">
+      <view class="guide-back" bindtap="backToHelpCenter">
+        <text class="back-icon">‹</text>
+        <text class="back-text">Back</text>
+      </view>
+      <view class="guide-tag">{{currentGuide.type}}</view>
+    </view>
+    <view class="guide-detail-content">
+      <view class="guide-title">{{currentGuide.title}}</view>
+      <view class="guide-desc">{{currentGuide.desc}}</view>
+      <view class="guide-body">{{currentGuide.content}}</view>
+    </view>
+  </view>
+
+  <!-- Help Center Home -->
+  <view wx:else>
+    <!-- Search Bar -->
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="Search help content" confirm-type="search" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
+    </view>
+
+    <!-- Search Results -->
+    <view wx:if="{{showSearchResults}}" class="search-results">
+      <view class="search-header">
+        <text class="search-title">Search Results</text>
+        <text class="search-count">Total: {{searchResults.length}} results</text>
+      </view>
+      <view class="search-list">
+        <view class="search-item" wx:for="{{searchResults}}" wx:key="id" bindtap="viewSearchResult" data-id="{{item.id}}" data-type="{{item.type}}">
+          <text class="search-item-title">{{item.title}}</text>
+          <text class="search-item-desc">{{item.desc || item.answer || item.content.substring(0, 50) + '...'}}</text>
+        </view>
+      </view>
+      <view class="search-footer" bindtap="clearSearch">
+        <text class="clear-text">Clear Search</text>
+      </view>
+    </view>
+
+    <!-- FAQ Categories -->
+    <view class="category-grid">
+    <view class="category-item" bindtap="goToHelp" data-type="rent">
+      <view class="category-icon" style="background: #1890ff;">🏠</view>
+      <text class="category-name">Rental Pitfalls</text>
+      <text class="category-count">25 articles</text>
+    </view>
+    <view class="category-item" bindtap="goToHelp" data-type="rights">
+      <view class="category-icon" style="background: #52c41a;">⚖️</view>
+      <text class="category-name">Rights Protection Guide</text>
+      <text class="category-count">25 articles</text>
+    </view>
+    <view class="category-item" bindtap="goToHelp" data-type="contract">
+      <view class="category-icon" style="background: #faad14;">📝</view>
+      <text class="category-name">Contract Interpretation</text>
+      <text class="category-count">25 articles</text>
+    </view>
+    <view class="category-item" bindtap="goToHelp" data-type="fee">
+      <view class="category-icon" style="background: #722ed1;">💰</view>
+      <text class="category-name">Fee Explanation</text>
+      <text class="category-count">25 articles</text>
+    </view>
+  </view>
+
+    <!-- Hot Questions -->
+    <view class="section-title">Hot Questions</view>
+    <view class="faq-list">
+      <view class="faq-item" wx:for="{{hotFaqs}}" wx:key="id" bindtap="viewFaq" data-id="{{item.id}}">
+        <view class="faq-header">
+          <text class="faq-icon">Q</text>
+          <text class="faq-question">{{item.question}}</text>
+        </view>
+        <text class="faq-answer">{{item.answer}}</text>
+        <view class="faq-footer">
+          <text class="faq-views">{{item.views}} views</text>
+          <text class="faq-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+
+
+    <!-- Contact Customer Service -->
+    <view class="contact-card">
+      <view class="contact-header">
+        <text class="contact-title">Still have questions?</text>
+        <text class="contact-desc">Our customer service team is here to help</text>
+      </view>
+      <view class="contact-actions">
+        <button class="contact-btn chat" bindtap="startChat">
+          <text class="btn-icon">💬</text>
+          <text class="btn-text">Online Chat</text>
+        </button>
+        <button class="contact-btn phone" bindtap="callService">
+          <text class="btn-icon">📞</text>
+          <text class="btn-text">Phone Consultation</text>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+<!-- Verification Result Page -->
+<view class="page-container">
+
+  <view class="list-view" wx:if="{{currentView === 'list'}}">
+    <view class="page-header">
+      <text class="page-title">Verification Records</text>
+      <text class="page-subtitle">{{records.length}} records</text>
+    </view>
+
+    <view class="records-list" wx:if="{{records.length > 0}}">
+      <view class="record-item {{item.isOverpriced ? 'warning' : 'success'}}" wx:for="{{records}}" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+        <view class="record-header">
+          <text class="record-icon">{{item.isOverpriced ? '⚠️' : '✅'}}</text>
+          <view class="record-info">
+            <text class="record-title">{{item.city}} {{item.feeType}}</text>
+            <text class="record-time">{{item.dateStr}}</text>
+          </view>
+          <text class="record-status">{{item.isOverpriced ? 'Overpriced' : 'Reasonable'}}</text>
+        </view>
+        <view class="record-body">
+          <view class="price-row">
+            <text class="price-label">Official Rate:</text>
+            <text class="price-value">{{item.officialPrice}}</text>
+          </view>
+          <view class="price-row">
+            <text class="price-label">Landlord Price:</text>
+            <text class="price-value {{item.isOverpriced ? 'overpriced' : ''}}">{{item.landlordPrice}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">No records</text>
+      <button class="new-btn" bindtap="goToNewVerify">Verify Now</button>
+    </view>
+  </view>
+
+  <view class="detail-view" wx:if="{{currentView === 'detail'}}">
+    <view class="result-card {{result.isOverpriced ? 'warning' : 'success'}}">
+      <view class="result-header">
+        <text class="result-icon">{{result.isOverpriced ? '⚠️' : '✅'}}</text>
+        <text class="result-title">{{result.isOverpriced ? 'Overpriced' : 'Reasonable'}}</text>
+        <text class="result-time" wx:if="{{currentRecord}}">{{currentRecord.dateStr}}</text>
+      </view>
+
+      <view class="result-details">
+        <view class="detail-item" wx:if="{{currentRecord}}">
+          <text class="detail-label">City</text>
+          <text class="detail-value">{{currentRecord.city}}</text>
+        </view>
+        <view class="detail-item" wx:if="{{currentRecord}}">
+          <text class="detail-label">Type</text>
+          <text class="detail-value">{{currentRecord.feeType}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">Official Rate</text>
+          <text class="detail-value">{{result.officialPrice}} ¥/{{result.feeUnit === 'CNY/kWh' ? 'kWh' : 'm³'}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">Landlord Price</text>
+          <text class="detail-value {{result.isOverpriced ? 'overpriced' : ''}}">{{result.landlordPrice}} ¥/{{result.feeUnit === 'CNY/kWh' ? 'kWh' : 'm³'}}</text>
+        </view>
+        <view class="detail-item {{result.isOverpriced ? 'highlight' : ''}}">
+          <text class="detail-label">Overprice %</text>
+          <text class="detail-value">{{result.overPricePercent}}%</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">Monthly Estimate</text>
+          <text class="detail-value">¥{{result.monthlyFee}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">Annual Difference</text>
+          <text class="detail-value text-danger">¥{{result.yearDiff}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="negotiation-card" wx:if="{{result.isOverpriced}}">
+      <text class="card-title">💬 Negotiation Template</text>
+      <text class="card-text">{{negotiationText}}</text>
+      <button class="copy-btn" bindtap="copyNegotiation">Copy Template</button>
+    </view>
+
+    <view class="action-buttons">
+      <button class="action-btn secondary" bindtap="goBack">{{currentRecord ? 'Back to List' : 'Back to Edit'}}</button>
+      <button class="action-btn danger" bindtap="deleteRecord" data-id="{{currentRecord ? currentRecord.id : ''}}" wx:if="{{currentRecord}}">Delete</button>
+    </view>
+  </view>
+</view>

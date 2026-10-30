@@ -1,0 +1,88 @@
+{
+  "miniVersion": "v2",
+  "name": "Youth Rental Rights Protector",
+  "version": "1.0.0",
+  "versionCode": 100,
+  "i18nFilePath": "i18n",
+  "mini-ohos": {
+    "sdkVersion": "0.5.1"
+  },
+  "mini-android": {
+    "resourcePath": "miniapp/android/nativeResources",
+    "sdkVersion": "1.6.24",
+    "toolkitVersion": "0.11.0",
+    "useExtendedSdk": {
+      "media": false,
+      "bluetooth": false,
+      "network": false,
+      "scanner": false,
+      "xweb": false
+    },
+    "icons": {
+      "hdpi": "",
+      "xhdpi": "",
+      "xxhdpi": "",
+      "xxxhdpi": ""
+    },
+    "splashscreen": {
+      "hdpi": "",
+      "xhdpi": "",
+      "xxhdpi": ""
+    },
+    "enableVConsole": "open",
+    "privacy": {
+      "enable": true
+    }
+  },
+  "mini-ios": {
+    "sdkVersion": "1.7.0",
+    "toolkitVersion": "0.0.9",
+    "useExtendedSdk": {
+      "WeAppOpenFuns": true,
+      "WeAppNetwork": false,
+      "WeAppBluetooth": false,
+      "WeAppMedia": false,
+      "WeAppLBS": false,
+      "WeAppOthers": false
+    },
+    "enableVConsole": "open",
+    "icons": {
+      "mainIcon120": "",
+      "mainIcon180": "",
+      "spotlightIcon80": "",
+      "spotlightIcon120": "",
+      "settingsIcon58": "",
+      "settingsIcon87": "",
+      "notificationIcon40": "",
+      "notificationIcon60": "",
+      "appStore1024": ""
+    },
+    "splashScreen": {
+      "customImage": ""
+    },
+    "privacy": {
+      "enable": false
+    },
+    "enableOpenUrlNavigate": true,
+    "buildCloud": {
+      "useRemote": true
+    },
+    "privateDescriptions": {
+      "NSPhotoLibraryUsageDescription": "This app needs access to your photo library. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSCameraUsageDescription": "This app needs access to your camera. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSMicrophoneUsageDescription": "This app needs access to your microphone. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSLocationWhenInUseUsageDescription": "This app needs access to your location while in use. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSLocationAlwaysUsageDescription": "This app needs always-on access to your location. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs always-on and while-in-use access to your location. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSContactsUsageDescription": "This app needs access to your contacts. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSCalendarsUsageDescription": "This app needs access to your calendar. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSRemindersUsageDescription": "This app needs access to your reminders. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSBluetoothPeripheralUsageDescription": "This app needs access to Bluetooth. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSBluetoothAlwaysUsageDescription": "This app needs always-on access to Bluetooth. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSSpeechRecognitionUsageDescription": "This app needs speech recognition. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSLocalNetworkUsageDescription": "This app needs access to the local network. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSSystemAdministrationUsageDescription": "This app needs to perform system administration. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'.",
+      "NSPhotoLibraryAddUsageDescription": "This app requests access to the photo library. To modify, go to 'project.miniapp.json - Privacy Permission Descriptions' and disable 'Auto-fill default privacy permission descriptions'."
+    }
+  }
+}

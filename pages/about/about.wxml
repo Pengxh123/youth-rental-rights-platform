@@ -1,0 +1,106 @@
+<!--pages/about/about.wxml-->
+<view class="page-container">
+  
+
+  <!-- Logo Area -->
+  <view class="logo-section">
+    <view class="logo-box">
+      <text class="logo-icon">🏠</text>
+    </view>
+    <text class="app-name">Youth Rental Rights Protection Service Platform</text>
+    <text class="app-version">Version 1.0.0</text>
+  </view>
+
+  <!-- Platform Introduction -->
+  <view class="content-section">
+    <text class="section-title">Platform Introduction</text>
+    <text class="section-text">The Youth Rental Rights Protection Service Platform is a one-stop rental service application designed specifically for young tenants. We are committed to helping young people avoid pitfalls and traps, providing professional rental rights protection guidance, so that every tenant can rent and live with peace of mind.</text>
+  </view>
+
+  <!-- Core Features -->
+  <view class="content-section">
+    <text class="section-title">Core Features</text>
+    <view class="feature-list">
+      <view class="feature-item">
+        <text class="feature-icon">🔍</text>
+        <view class="feature-info">
+          <text class="feature-name">Listing Verification</text>
+          <text class="feature-desc">Smart identification of fake listings, avoid rental traps</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">💰</text>
+        <view class="feature-info">
+          <text class="feature-name">Fee Calculation</text>
+          <text class="feature-desc">Smart calculation of deposit, utilities and other fees</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">⚖️</text>
+        <view class="feature-info">
+          <text class="feature-name">Rights Protection Guidance</text>
+          <text class="feature-desc">Professional rights protection process and skill guidance</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">📝</text>
+        <view class="feature-info">
+          <text class="feature-name">Contract Templates</text>
+          <text class="feature-desc">Anti-trap rental contracts, protect your rights</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">💬</text>
+        <view class="feature-info">
+          <text class="feature-name">Discussion Community</text>
+          <text class="feature-desc">Experience sharing, help each other avoid traps</text>
+        </view>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">📚</text>
+        <view class="feature-info">
+          <text class="feature-name">Rental Knowledge</text>
+          <text class="feature-desc">Rich rental pitfall avoidance knowledge base</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Contact Us -->
+  <view class="content-section">
+    <text class="section-title">Contact Us</text>
+    <view class="contact-list">
+      <view class="contact-item">
+        <text class="contact-label">Customer Service Phone</text>
+        <text class="contact-value">400-123-4567</text>
+      </view>
+      <view class="contact-item">
+        <text class="contact-label">Email</text>
+        <text class="contact-value">support@rental-service.com</text>
+      </view>
+      <view class="contact-item">
+        <text class="contact-label">Official Website</text>
+        <text class="contact-value">www.rental-service.com</text>
+      </view>
+      <view class="contact-item">
+        <text class="contact-label">Working Hours</text>
+        <text class="contact-value">Monday to Friday 9:00-18:00</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Disclaimer -->
+  <view class="content-section">
+    <text class="section-title">Disclaimer</text>
+    <text class="section-text">The rental information provided by this platform is for reference only and does not constitute any legal advice. When using the services of this platform, users should make their own judgment on the authenticity of the relevant information and bear the corresponding risks. This platform does not assume legal responsibility for any losses caused by using the services of this platform.</text>
+  </view>
+
+  <!-- Copyright -->
+  <view class="copyright">
+    <text class="copyright-text">Copyright © 2025 Youth Rental Rights Protection Service Platform</text>
+    <text class="copyright-text">All Rights Reserved</text>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="profile"></bottom-nav>
+</view>

@@ -1,0 +1,240 @@
+<!--pages/publish-house/publish-house.wxml-->
+<view class="page-container">
+  <!-- Form Container -->
+  <view class="form-container">
+    <!-- Basic Info -->
+    <view class="form-section">
+      <view class="section-title">Basic Info</view>
+      
+      <view class="form-item required">
+        <text class="label">Listing Title</text>
+        <input 
+          class="input" 
+          placeholder="Enter listing title (e.g., Furnished 1-bedroom, near subway)"
+          value="{{formData.title}}"
+          bindinput="onInputChange"
+          data-field="title"
+          maxlength="50"
+        />
+      </view>
+      
+      <view class="form-item required">
+        <text class="label">Rent Type</text>
+        <picker 
+          mode="selector" 
+          range="{{rentTypeOptions}}" 
+          range-key="label" 
+          bindchange="onPickerChange"
+          data-field="rentType"
+        >
+          <view class="picker {{formData.rentType ? 'has-value' : ''}}">
+            <text>{{formData.rentTypeLabel || 'Select rent type'}}</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+      
+      <view class="form-row">
+        <view class="form-item required">
+          <text class="label">Layout</text>
+          <picker 
+            mode="selector" 
+            range="{{houseTypeOptions}}" 
+            range-key="label" 
+            bindchange="onPickerChange"
+            data-field="houseType"
+          >
+            <view class="picker {{formData.houseType ? 'has-value' : ''}}">
+              <text>{{formData.houseTypeLabel || 'Select'}}</text>
+              <text class="arrow">▼</text>
+            </view>
+          </picker>
+        </view>
+        
+        <view class="form-item required">
+          <text class="label">Area</text>
+          <input 
+            class="input" 
+            placeholder="Area"
+            type="digit"
+            value="{{formData.area}}"
+            bindinput="onInputChange"
+            data-field="area"
+          />
+          <text class="unit">㎡</text>
+        </view>
+      </view>
+      
+      <view class="form-row">
+        <view class="form-item required">
+          <text class="label">Floor</text>
+          <picker 
+            mode="selector" 
+            range="{{floorOptions}}" 
+            range-key="label" 
+            bindchange="onPickerChange"
+            data-field="floor"
+          >
+            <view class="picker {{formData.floor ? 'has-value' : ''}}">
+              <text>{{formData.floorLabel || 'Select'}}</text>
+              <text class="arrow">▼</text>
+            </view>
+          </picker>
+        </view>
+        
+        <view class="form-item required">
+          <text class="label">Decoration</text>
+          <picker 
+            mode="selector" 
+            range="{{decorationOptions}}" 
+            range-key="label" 
+            bindchange="onPickerChange"
+            data-field="decoration"
+          >
+            <view class="picker {{formData.decoration ? 'has-value' : ''}}">
+              <text>{{formData.decorationLabel || 'Select'}}</text>
+              <text class="arrow">▼</text>
+            </view>
+          </picker>
+        </view>
+      </view>
+      
+      <view class="form-item required">
+        <text class="label">Monthly Rent</text>
+        <view class="price-input">
+          <text class="currency">¥</text>
+          <input 
+            class="input" 
+            placeholder="Enter rent amount"
+            type="digit"
+            value="{{formData.price}}"
+            bindinput="onInputChange"
+            data-field="price"
+          />
+          <text class="unit">CNY/month</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- Property Address -->
+    <view class="form-section">
+      <view class="section-title">Property Address</view>
+      
+      <view class="form-item required">
+        <text class="label">Location Selection</text>
+        <view class="location-picker" bindtap="chooseLocation">
+          <text class="location-text {{formData.address ? 'has-value' : ''}}">
+            {{formData.address || 'Tap to select location'}}
+          </text>
+          <text class="location-icon">📍</text>
+        </view>
+      </view>
+      
+      <view class="form-item">
+        <text class="label">Detailed Address</text>
+        <input 
+          class="input" 
+          placeholder="Enter detailed address"
+          value="{{formData.address}}"
+          bindinput="onInputChange"
+          data-field="address"
+        />
+      </view>
+    </view>
+    
+    <!-- Listing Images -->
+    <view class="form-section">
+      <view class="section-title">Listing Images <text class="hint">(max 6)</text></view>
+      
+      <view class="image-list">
+        <view 
+          class="image-item" 
+          wx:for="{{formData.images}}" 
+          wx:key="index"
+        >
+          <image 
+            src="{{item}}" 
+            mode="aspectFill" 
+            class="image"
+            bindtap="previewImage"
+            data-index="{{index}}"
+          />
+          <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">
+            <text>✕</text>
+          </view>
+        </view>
+        
+        <view 
+          class="image-upload" 
+          wx:if="{{formData.images.length < maxImages}}"
+          bindtap="chooseImage"
+        >
+          <text class="upload-icon">➕</text>
+          <text class="upload-text">Add Image</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- Amenities -->
+    <view class="form-section">
+      <view class="section-title">Amenities</view>
+      
+      <view class="facility-list">
+        <view 
+          class="facility-item {{formData.facilities.includes(item.value) ? 'selected' : ''}}"
+          wx:for="{{facilityOptions}}"
+          wx:key="value"
+          bindtap="toggleFacility"
+          data-value="{{item.value}}"
+        >
+          <text class="facility-icon">{{item.icon}}</text>
+          <text class="facility-label">{{item.label}}</text>
+          <view class="facility-check" wx:if="{{formData.facilities.includes(item.value)}}">
+            <text>✓</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- Listing Description -->
+    <view class="form-section">
+      <view class="section-title">Listing Description</view>
+      
+      <textarea 
+        class="textarea" 
+        placeholder="Describe the property condition, surroundings, transport, etc."
+        value="{{formData.description}}"
+        bindinput="onInputChange"
+        data-field="description"
+        maxlength="500"
+        auto-height
+      />
+      <text class="char-count">{{formData.description.length}}/500</text>
+    </view>
+  </view>
+  
+  <!-- Bottom Buttons -->
+  <view class="footer-actions">
+    <button class="btn-secondary" bindtap="saveDraft">Save Draft</button>
+    <button class="btn-primary" bindtap="submitForm" disabled="{{submitting}}">
+      {{submitting ? 'Submitting...' : 'Submit'}}
+    </button>
+  </view>
+  
+  <!-- Draft List -->
+  <view class="draft-panel" wx:if="{{houseDrafts.length > 0}}">
+    <view class="draft-title">Draft List</view>
+    <view class="draft-list">
+      <view class="draft-item" wx:for="{{houseDrafts}}" wx:key="draftId">
+        <view class="draft-info">
+          <text class="draft-item-title">{{item.title || 'Untitled'}}</text>
+          <text class="draft-time">{{item.saveTime}}</text>
+        </view>
+        <view class="draft-actions">
+          <text class="draft-btn" bindtap="loadDraft" data-id="{{item.draftId}}">Load</text>
+          <text class="draft-btn delete" bindtap="deleteDraft" data-id="{{item.draftId}}">Delete</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

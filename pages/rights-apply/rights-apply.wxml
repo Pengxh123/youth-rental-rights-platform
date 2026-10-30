@@ -1,0 +1,114 @@
+<!-- Rights Protection Application Page -->
+<view class="page-container">
+  <view class="form-container">
+    <view class="form-header">
+      <text class="header-icon">📝</text>
+      <text class="header-title">Rights Protection Application</text>
+      <text class="header-desc">Fill in your rights protection information, we will process it as soon as possible</text>
+    </view>
+
+    <view class="form-section">
+      <view class="section-title">Basic Information</view>
+
+      <view class="form-item">
+        <text class="form-label">Rights Type <text class="required">*</text></text>
+        <picker mode="selector" range="{{types}}" value="{{typeIndex}}" bindchange="onTypeChange">
+          <view class="picker-view">
+            <text class="picker-text">{{types[typeIndex] || 'Please select'}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">Title <text class="required">*</text></text>
+        <input class="form-input" placeholder="Briefly describe your rights protection request" value="{{title}}" bindinput="onTitleInput" maxlength="50" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">Detailed Description <text class="required">*</text></text>
+        <textarea class="form-textarea" placeholder="Please describe the rights protection process, time, amount involved, etc. in detail" value="{{description}}" bindinput="onDescInput" maxlength="500" auto-height />
+        <text class="char-count">{{description.length}}/500</text>
+      </view>
+    </view>
+
+    <view class="form-section">
+      <view class="section-title">Evidence Materials</view>
+
+      <view class="form-item">
+        <text class="form-label">Amount Involved (CNY)</text>
+        <input class="form-input" type="digit" placeholder="Enter amount involved" value="{{amount}}" bindinput="onAmountInput" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">Contract Photo</text>
+        <view class="upload-area">
+          <view class="upload-btn" bindtap="uploadContract" wx:if="{{!contractImage}}">
+            <text class="upload-icon">📷</text>
+            <text class="upload-text">Upload Contract</text>
+          </view>
+          <view class="upload-preview" wx:else bindtap="uploadContract">
+            <image class="preview-img" src="{{contractImage}}" mode="aspectFill" />
+            <view class="preview-mask">
+              <text class="mask-text">Re-upload</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">Proof Photos</text>
+        <view class="upload-area">
+          <view class="upload-btn" bindtap="uploadProof" wx:if="{{!proofImages || proofImages.length === 0}}">
+            <text class="upload-icon">📷</text>
+            <text class="upload-text">Upload Proof</text>
+          </view>
+          <view class="upload-list" wx:else>
+            <view class="upload-preview-item" wx:for="{{proofImages}}" wx:key="index" bindtap="previewProof" data-index="{{index}}">
+              <image class="preview-img" src="{{item}}" mode="aspectFill" />
+              <view class="delete-btn" catchtap="deleteProof" data-index="{{index}}">×</view>
+            </view>
+            <view class="upload-btn-small" bindtap="uploadProof" wx:if="{{proofImages.length < 6}}">
+              <text class="upload-plus">+</text>
+            </view>
+          </view>
+        </view>
+        <text class="tip-text">Upload up to 6 photos, supports jpg, png format</text>
+      </view>
+    </view>
+
+    <view class="form-section">
+      <view class="section-title">Contact Information</view>
+
+      <view class="form-item">
+        <text class="form-label">Your Name <text class="required">*</text></text>
+        <input class="form-input" placeholder="Enter your name" value="{{name}}" bindinput="onNameInput" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">Phone Number <text class="required">*</text></text>
+        <input class="form-input" type="number" placeholder="Enter phone number" value="{{phone}}" bindinput="onPhoneInput" maxlength="11" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">ID Number</text>
+        <input class="form-input" type="idcard" placeholder="Enter ID number (optional)" value="{{idCard}}" bindinput="onIdCardInput" maxlength="18" />
+      </view>
+    </view>
+
+    <view class="tips-card">
+      <text class="tips-title">📋 Tips</text>
+      <view class="tips-content">
+        <text class="tip-item">• Please ensure the evidence materials provided are authentic and valid</text>
+        <text class="tip-item">• False information will affect your credit record</text>
+        <text class="tip-item">• Platform will review your application within 24 hours</text>
+        <text class="tip-item">• We will contact you promptly after review approval</text>
+      </view>
+    </view>
+
+    <button class="submit-btn" bindtap="submitApply">Submit Application</button>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="rights-protect"></bottom-nav>
+</view>

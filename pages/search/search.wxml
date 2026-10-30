@@ -1,0 +1,130 @@
+<view class="search-container">
+  <view class="search-header">
+    <view class="search-input-wrapper">
+      <view class="search-icon">🔍</view>
+      <input 
+        class="search-input" 
+        placeholder="Search topics, tools, guides" 
+        value="{{keyword}}" 
+        bindinput="onInput" 
+        bindconfirm="onSearch"
+        focus="{{true}}"
+      />
+      <view 
+        wx:if="{{keyword}}" 
+        class="clear-icon" 
+        bindtap="onClearInput"
+      >×</view>
+    </view>
+    <view class="search-btn" bindtap="onSearch">Search</view>
+  </view>
+
+  <view wx:if="!hasResults && !noResults && searchHistory.length > 0" class="search-section">
+    <view class="section-header">
+      <text>Search History</text>
+      <view class="clear-history" bindtap="clearSearchHistory">Clear</view>
+    </view>
+    <view class="keyword-list">
+      <view 
+        wx:for="{{searchHistory}}" 
+        wx:key="index"
+        class="keyword-item"
+        data-keyword="{{item}}"
+        bindtap="selectHistory"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="!hasResults && !noResults" class="search-section">
+    <view class="section-header">
+      <text>Hot Searches</text>
+    </view>
+    <view class="keyword-list">
+      <view 
+        wx:for="{{hotKeywords}}" 
+        wx:key="index"
+        class="keyword-item hot"
+        data-keyword="{{item}}"
+        bindtap="selectHotKeyword"
+      >
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+
+  <view wx:if="hasResults" class="search-results">
+    <view class="section-header">
+      <text>Results</text>
+      <text class="result-count">{{searchResults.length}} results found</text>
+    </view>
+    <view class="result-list">
+      <view
+        wx:for="{{searchResults}}"
+        wx:key="item.id"
+        class="result-item"
+        data-item="{{item}}"
+        bindtap="viewDetail"
+      >
+        <view wx:if="item.type === 'topic'" class="topic-result">
+          <view class="topic-title">{{item.title}}</view>
+          <view class="topic-meta">
+            <text class="author">{{item.author}}</text>
+            <text class="dot">·</text>
+            <text class="time">{{item.time}}</text>
+            <text class="dot">·</text>
+            <text class="views">{{item.views}} views</text>
+            <text class="dot">·</text>
+            <text class="comments">{{item.comments}} comments</text>
+          </view>
+          <view class="topic-tags" wx:if="item.tags && item.tags.length > 0">
+            <view 
+              wx:for="{{item.tags}}" 
+              wx:for-item="tag"
+              wx:key="tagIndex"
+              class="tag"
+            >
+              {{tag}}
+            </view>
+          </view>
+        </view>
+        
+        <view wx:elif="item.type === 'tool' || item.type === 'guide' || item.type === 'help'" class="tool-result">
+          <view class="tool-icon">{{item.icon || '📦'}}</view>
+          <view class="tool-info">
+            <view class="tool-title">{{item.title}}</view>
+            <view class="tool-desc">{{item.desc}}</view>
+          </view>
+          <view class="arrow">→</view>
+        </view>
+        
+        <view wx:elif="item.type === 'case'" class="case-result">
+          <view class="case-header">
+            <view class="case-tag">{{item.caseType}}</view>
+            <view class="case-status success">Success</view>
+          </view>
+          <view class="case-title">{{item.title}}</view>
+          <view class="case-desc">{{item.desc}}</view>
+          <view class="case-info">
+            <view class="info-item">
+              <text class="info-label">Recovered</text>
+              <text class="info-value">¥{{item.amount}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">Duration</text>
+              <text class="info-value">{{item.time}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view wx:else class="no-results">
+    <view class="no-results-icon">🔍</view>
+    <text>No results found</text>
+    <text class="no-results-tip">Try other keywords or check hot searches</text>
+  </view>
+</view>

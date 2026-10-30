@@ -1,0 +1,106 @@
+<!-- Discussion Page -->
+<view class="page-container">
+  <!-- Top Search -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="Search topics, experiences, tips" bindinput="onSearchInput" confirm-type="search" bindconfirm="onSearch" />
+    </view>
+    <view class="filter-btn" bindtap="showFilter">
+      <text>Filter</text>
+      <text class="filter-icon">⚙️</text>
+    </view>
+  </view>
+
+  <!-- Topic Categories -->
+  <view class="category-scroll">
+    <scroll-view class="category-scroll-view" scroll-x="{{true}}" show-scrollbar="{{false}}">
+      <view class="category-list">
+        <view class="category-item {{currentCategory === '' ? 'active' : ''}}" bindtap="switchCategory" data-category="">
+          <text>All</text>
+        </view>
+        <view class="category-item {{currentCategory === 'fraud' ? 'active' : ''}}" bindtap="switchCategory" data-category="fraud">
+          <text>Scam Stories</text>
+        </view>
+        <view class="category-item {{currentCategory === 'tips' ? 'active' : ''}}" bindtap="switchCategory" data-category="tips">
+          <text>Tips & Tricks</text>
+        </view>
+        <view class="category-item {{currentCategory === 'success' ? 'active' : ''}}" bindtap="switchCategory" data-category="success">
+          <text>Success Stories</text>
+        </view>
+        <view class="category-item {{currentCategory === 'help' ? 'active' : ''}}" bindtap="switchCategory" data-category="help">
+          <text>Ask for Help</text>
+        </view>
+        <view class="category-item {{currentCategory === 'rights' ? 'active' : ''}}" bindtap="switchCategory" data-category="rights">
+          <text>Rights Experiences</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- Hot Tags -->
+  <view class="hot-tags">
+    <view class="tag-item" wx:for="{{hotTags}}" wx:key="id" bindtap="searchTag" data-tag="{{item.tag}}">
+      <text class="tag-icon">{{item.icon}}</text>
+      <text class="tag-text">{{item.tag}}</text>
+    </view>
+  </view>
+
+  <!-- Topic List -->
+  <view class="topic-list">
+    <view class="topic-item" wx:for="{{topics}}" wx:key="id" bindtap="viewTopic" data-id="{{item.id}}">
+      <!-- User Info -->
+      <view class="topic-user">
+        <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill" />
+        <view class="user-info">
+          <text class="user-name">{{item.author}}</text>
+          <text class="topic-time">{{item.time}}</text>
+        </view>
+        <view class="topic-badge {{item.type}}" wx:if="{{item.isHot || item.isTop}}">
+          <text>{{item.isHot ? '🔥' : '📌'}}</text>
+        </view>
+      </view>
+
+      <!-- Topic Content -->
+      <view class="topic-content">
+        <text class="topic-title">{{item.title}}</text>
+        <text class="topic-desc">{{item.description}}</text>
+      </view>
+
+      <!-- Topic Image Grid -->
+      <view class="topic-images" wx:if="{{item.images && item.images.length > 0}}">
+        <image class="topic-image" wx:for="{{item.images}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill" />
+      </view>
+
+      <!-- Topic Footer -->
+      <view class="topic-footer">
+        <view class="topic-tag" wx:for="{{item.tags}}" wx:key="*this">
+          <text>{{item}}</text>
+        </view>
+        <view class="topic-stats">
+          <view class="stat-item">
+            <text>👁️</text>
+            <text>{{item.views}}</text>
+          </view>
+          <view class="stat-item">
+            <text>💬</text>
+            <text>{{item.comments}}</text>
+          </view>
+          <view class="stat-item">
+            <text>❤️</text>
+            <text>{{item.likes}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Publish Button -->
+  <view class="publish-btn" bindtap="publishTopic">
+    <text class="publish-icon">✏️</text>
+    <text>New Topic</text>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="discussion"></bottom-nav>
+</view>

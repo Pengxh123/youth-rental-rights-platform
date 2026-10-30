@@ -1,0 +1,106 @@
+<!-- Rights Protection Progress Query Page -->
+<view class="page-container">
+  <view class="query-container">
+    <view class="search-card">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="Enter rights protection order number" value="{{orderNo}}" bindinput="onSearchInput" />
+      <button class="search-btn" bindtap="searchOrder">Search</button>
+    </view>
+
+    <view class="my-records-section">
+      <view class="section-header">
+        <text class="section-title">My Rights Protection Records</text>
+        <text class="record-count">Total: {{records.length}} records</text>
+      </view>
+
+      <view class="records-list" wx:if="{{records.length > 0}}">
+        <view class="record-card" wx:for="{{records}}" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+          <view class="record-header">
+            <view class="record-type {{item.type}}">
+              <text class="type-icon">{{item.typeIcon}}</text>
+              <text class="type-text">{{item.typeText}}</text>
+            </view>
+            <view class="record-status {{item.status}}">
+              <text class="status-dot"></text>
+              <text class="status-text">{{item.statusText}}</text>
+            </view>
+          </view>
+
+          <view class="record-content">
+            <text class="record-title">{{item.title}}</text>
+            <text class="record-desc">{{item.description}}</text>
+          </view>
+
+          <view class="record-info">
+            <view class="info-item">
+              <text class="info-icon">📅</text>
+              <text class="info-text">Application Time: {{item.createTime}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-icon">📋</text>
+              <text class="info-text">Order Number: {{item.orderNo}}</text>
+            </view>
+            <view class="info-item" wx:if="{{item.amount}}">
+              <text class="info-icon">💰</text>
+              <text class="info-text">Amount Involved: ¥{{item.amount}}</text>
+            </view>
+          </view>
+
+          <!-- Progress Bar -->
+          <view class="progress-section">
+            <text class="progress-title">Processing Progress</text>
+            <view class="progress-track">
+              <view class="progress-bar" style="width: {{item.progress}}%;"></view>
+            </view>
+            <text class="progress-percent">{{item.progress}}%</text>
+          </view>
+
+          <view class="timeline-section" wx:if="{{item.timeline && item.timeline.length > 0}}">
+            <text class="timeline-title">Processing Timeline</text>
+            <view class="timeline-list">
+              <view class="timeline-item {{item.completed ? 'completed' : ''}}" wx:for="{{item.timeline}}" wx:for-item="step" wx:key="index">
+                <view class="timeline-dot"></view>
+                <view class="timeline-content">
+                  <text class="timeline-title">{{step.title}}</text>
+                  <text class="timeline-time">{{step.time}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-records" wx:else>
+        <text class="empty-icon">📋</text>
+        <text class="empty-text">No Rights Protection Records</text>
+        <button class="empty-btn" bindtap="applyRights">Apply for Rights Protection Now</button>
+      </view>
+    </view>
+
+    <!-- Status Guide -->
+    <view class="status-guide">
+      <text class="guide-title">📋 Status Guide</text>
+      <view class="guide-list">
+        <view class="guide-item">
+          <view class="guide-dot pending"></view>
+          <text class="guide-text">Pending Review: Waiting for platform review after submission</text>
+        </view>
+        <view class="guide-item">
+          <view class="guide-dot processing"></view>
+          <text class="guide-text">Processing: Currently handling your rights protection application</text>
+        </view>
+        <view class="guide-item">
+          <view class="guide-dot completed"></view>
+          <text class="guide-text">Completed: Rights protection issue has been resolved</text>
+        </view>
+        <view class="guide-item">
+          <view class="guide-dot rejected"></view>
+          <text class="guide-text">Rejected: Application did not pass review</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="rights-protect"></bottom-nav>
+</view>

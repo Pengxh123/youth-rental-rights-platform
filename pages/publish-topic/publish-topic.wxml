@@ -1,0 +1,126 @@
+<!-- Publish Topic Page -->
+<view class="page-container">
+  <!-- Page Header -->
+  <view class="page-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="back-icon">‹</text>
+      <text class="back-text">Cancel</text>
+    </view>
+    <text class="header-title">Publish Topic</text>
+    <view class="header-right">
+      <text class="draft-btn" bindtap="onSaveDraft">Save Draft</text>
+    </view>
+  </view>
+
+  <!-- Publish Form -->
+  <view class="publish-form">
+    <!-- Title Input -->
+    <view class="form-item">
+      <input
+        class="title-input"
+        placeholder="Enter title (5-50 characters)"
+        value="{{title}}"
+        bindinput="onTitleInput"
+        maxlength="50"
+      />
+      <text class="title-count">{{title.length}}/50</text>
+    </view>
+
+    <!-- Content Input -->
+    <view class="form-item">
+      <textarea
+        class="content-input"
+        placeholder="Share your rental experience, tips or ask for help..."
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="1000"
+        auto-height
+      />
+      <text class="content-count">{{content.length}}/1000</text>
+    </view>
+
+    <!-- Image Upload -->
+    <view class="form-item">
+      <view class="image-list">
+        <view class="image-item" wx:for="{{images}}" wx:key="*this">
+          <image class="image-preview" src="{{item}}" mode="aspectFill" bindtap="onPreviewImage" data-index="{{index}}" />
+          <view class="image-delete" bindtap="onDeleteImage" data-index="{{index}}">
+            <text>×</text>
+          </view>
+        </view>
+        <view class="image-add" wx:if="{{images.length < 9}}" bindtap="onChooseImage">
+          <text class="add-icon">+</text>
+          <text class="add-text">Add Image</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Category Selection -->
+    <view class="form-item" bindtap="showCategoryPicker">
+      <view class="select-label">
+        <text>Select Category</text>
+        <text class="required">*</text>
+      </view>
+      <view class="select-value">
+        <text wx:if="{{category}}">{{getCategoryName(category)}}</text>
+        <text class="placeholder" wx:else>Please select category</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+
+    <!-- Tags -->
+    <view class="form-item">
+      <view class="tag-input-wrapper">
+        <input
+          class="tag-input"
+          placeholder="Add tags (max 5)"
+          value="{{currentTag}}"
+          bindinput="onTagInput"
+        />
+        <button class="tag-add-btn" bindtap="onAddTag" wx:if="{{currentTag}}">Add</button>
+      </view>
+      <view class="tag-list" wx:if="{{tags.length > 0}}">
+        <view class="tag-item" wx:for="{{tags}}" wx:key="*this" bindtap="onDeleteTag" data-index="{{index}}">
+          <text class="tag-text">#{{item}}</text>
+          <text class="tag-delete">×</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Anonymous Publish -->
+    <view class="form-item">
+      <view class="switch-label">
+        <text class="label-text">Anonymous</text>
+        <switch class="switch" checked="{{isAnonymous}}" bindchange="onAnonymousChange" />
+      </view>
+    </view>
+  </view>
+
+  <!-- Publish Button -->
+  <view class="publish-actions">
+    <button class="publish-btn" bindtap="onPublish">Publish Now</button>
+  </view>
+
+  <!-- Category Selection Modal -->
+  <view class="modal-mask" wx:if="{{showCategoryModal}}" bindtap="hideCategoryPicker">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">Select Category</text>
+        <text class="modal-close" bindtap="hideCategoryPicker">×</text>
+      </view>
+      <view class="modal-body">
+        <view class="category-item {{category === item.id ? 'active' : ''}}"
+              wx:for="{{categories}}"
+              wx:key="id"
+              bindtap="onChooseCategory"
+              data-category="{{item.id}}">
+          <text class="category-name">{{item.name}}</text>
+          <text class="category-check" wx:if="{{category === item.id}}">✓</text>
+        </view>
+      </view>
+      <view class="modal-footer">
+        <button class="modal-btn" bindtap="hideCategoryPicker">Confirm</button>
+      </view>
+    </view>
+  </view>
+</view>

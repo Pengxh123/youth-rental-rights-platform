@@ -1,0 +1,312 @@
+<!-- Fee Verification Page -->
+<view class="page-container">
+  <!-- Function Tabs -->
+  <view class="function-tabs">
+    <view class="tab-item {{currentTab === 'water' ? 'active' : ''}}" bindtap="switchTab" data-tab="water">
+      <text class="tab-icon">💧</text>
+      <text class="tab-text">Utility Check</text>
+    </view>
+    <view class="tab-item {{currentTab === 'rent' ? 'active' : ''}}" bindtap="switchTab" data-tab="rent">
+      <text class="tab-icon">🏠</text>
+      <text class="tab-text">Rent Reference</text>
+    </view>
+    <view class="tab-item {{currentTab === 'calculator' ? 'active' : ''}}" bindtap="switchTab" data-tab="calculator">
+      <text class="tab-icon">🧮</text>
+      <text class="tab-text">Cost Calculator</text>
+    </view>
+  </view>
+
+  <!-- Utility Check -->
+  <view class="tab-content" wx:if="{{currentTab === 'water'}}">
+    <view class="verify-form">
+      <view class="form-group">
+        <text class="form-label">Select Province</text>
+        <picker mode="selector" range="{{provinces}}" value="{{provinceIndex}}" bindchange="onProvinceChange">
+          <view class="picker-view">
+            <text class="picker-text">{{provinces[provinceIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Select City</text>
+        <picker mode="selector" range="{{cities}}" value="{{cityIndex}}" bindchange="onCityChange">
+          <view class="picker-view">
+            <text class="picker-text">{{cities[cityIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Fee Type</text>
+        <picker mode="selector" range="{{feeTypes}}" value="{{feeTypeIndex}}" bindchange="onFeeTypeChange">
+          <view class="picker-view">
+            <text class="picker-text">{{feeTypes[feeTypeIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Landlord's Price ({{feeTypeIndex <= 2 ? 'yuan/kWh' : 'yuan/m³'}})</text>
+        <input class="form-input" type="digit" placeholder="Enter landlord's price" value="{{landlordPrice}}" bindinput="onPriceInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Usage</text>
+        <input class="form-input" type="digit" placeholder="Enter usage" value="{{usage}}" bindinput="onUsageInput" />
+      </view>
+
+      <button class="verify-btn" bindtap="verifyFee">Start Verification</button>
+    </view>
+
+    <!-- Verification Result -->
+    <view class="verify-result" wx:if="{{verifyResult}}">
+      <view class="result-header {{verifyResult.isOverpriced ? 'warning' : 'success'}}">
+        <text class="result-icon">{{verifyResult.isOverpriced ? '⚠️' : '✅'}}</text>
+        <text class="result-title">{{verifyResult.isOverpriced ? 'Overpriced' : 'Reasonable Price'}}</text>
+      </view>
+
+      <view class="result-details">
+        <view class="result-item">
+          <text class="result-label">Official Standard</text>
+          <text class="result-value">{{verifyResult.officialPrice}} {{verifyResult.feeUnit}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">Landlord's Price</text>
+          <text class="result-value {{verifyResult.isOverpriced ? 'overpriced' : ''}}">{{verifyResult.landlordPrice}} {{verifyResult.feeUnit}}</text>
+        </view>
+        <view class="result-item {{verifyResult.isOverpriced ? 'overpriced' : ''}}">
+          <text class="result-label">Overcharge Percentage</text>
+          <text class="result-value text-danger">{{verifyResult.overPricePercent}}%</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">Estimated Monthly Cost</text>
+          <text class="result-value">¥{{verifyResult.monthlyFee}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">Annual Difference</text>
+          <text class="result-value text-danger">¥{{verifyResult.yearDiff}}</text>
+        </view>
+      </view>
+
+      <!-- Negotiation Script -->
+      <view class="negotiation-card" wx:if="{{verifyResult.isOverpriced}}">
+        <text class="card-title">💬 Negotiation Script Template</text>
+        <text class="card-text">{{negotiationText}}</text>
+        <button class="copy-btn" bindtap="copyNegotiation">Copy Script</button>
+      </view>
+
+      <!-- Generate Report -->
+      <button class="report-btn" bindtap="generateReport">Generate Verification Report</button>
+    </view>
+  </view>
+
+  <!-- Rent Reference -->
+  <view class="tab-content" wx:if="{{currentTab === 'rent'}}">
+    <view class="verify-form">
+      <view class="form-group">
+        <text class="form-label">Select Province</text>
+        <picker mode="selector" range="{{provinces}}" value="{{provinceIndex}}" bindchange="onProvinceChange">
+          <view class="picker-view">
+            <text class="picker-text">{{provinces[provinceIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">City</text>
+        <picker mode="selector" range="{{cities}}" value="{{cityIndex}}" bindchange="onCityChange">
+          <view class="picker-view">
+            <text class="picker-text">{{cities[cityIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">District</text>
+        <picker mode="selector" range="{{districts}}" value="{{districtIndex}}" bindchange="onDistrictChange">
+          <view class="picker-view">
+            <text class="picker-text">{{districts[districtIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Property Type</text>
+        <picker mode="selector" range="{{roomTypes}}" value="{{roomTypeIndex}}" bindchange="onRoomTypeChange">
+          <view class="picker-view">
+            <text class="picker-text">{{roomTypes[roomTypeIndex]}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Property Area (㎡)</text>
+        <input class="form-input" type="digit" placeholder="Enter area" value="{{roomArea}}" bindinput="onAreaInput" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Landlord's Price (yuan/month)</text>
+        <input class="form-input" type="digit" placeholder="Enter rent" value="{{landlordRent}}" bindinput="onRentInput" />
+      </view>
+
+      <button class="verify-btn" bindtap="verifyRent">Compare Rent</button>
+    </view>
+
+    <!-- Rent Comparison Result -->
+    <view class="rent-result" wx:if="{{rentResult}}">
+      <view class="result-header {{rentResult.isOverpriced ? 'warning' : 'success'}}">
+        <text class="result-icon">{{rentResult.isOverpriced ? '⚠️' : '✅'}}</text>
+        <text class="result-title">{{rentResult.isOverpriced ? 'Overpriced' : 'Reasonable Price'}}</text>
+      </view>
+
+      <view class="result-details">
+        <view class="result-item">
+          <text class="result-label">Community Average</text>
+          <text class="result-value">¥{{rentResult.avgPrice}}/month</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">Landlord's Price</text>
+          <text class="result-value {{rentResult.isOverpriced ? 'overpriced' : ''}}">¥{{rentResult.landlordPrice}}/month</text>
+        </view>
+        <view class="result-item {{rentResult.isOverpriced ? 'overpriced' : ''}}">
+          <text class="result-label">Deviation</text>
+          <text class="result-value {{rentResult.isOverpriced ? 'text-danger' : 'text-success'}}">{{rentResult.deviation}}%</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">Price Range</text>
+          <text class="result-value">¥{{rentResult.minPrice}} - ¥{{rentResult.maxPrice}}</text>
+        </view>
+      </view>
+
+      <!-- Price Analysis -->
+      <view class="analysis-card">
+        <text class="card-title">📊 Price Analysis</text>
+        <view class="analysis-item">
+          <text class="analysis-label">Current Price Position</text>
+          <view class="price-bar">
+            <view class="bar-fill" style="width: {{rentResult.position}}%; background: {{rentResult.position > 80 ? '#ff4d4f' : rentResult.position > 50 ? '#faad14' : '#52c41a'}};"></view>
+          </view>
+          <text class="analysis-value">{{rentResult.position}}%</text>
+        </view>
+        <view class="analysis-text">
+          <text>{{rentResult.analysis}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Cost Calculator -->
+  <view class="tab-content" wx:if="{{currentTab === 'calculator'}}">
+    <view class="calculator-form">
+      <view class="form-group">
+        <text class="form-label">Monthly Rent (yuan)</text>
+        <input class="form-input" type="digit" placeholder="Enter monthly rent" value="{{calculator.monthlyRent}}" bindinput="onCalculatorInput" data-field="monthlyRent" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Property Fee (yuan/month)</text>
+        <input class="form-input" type="digit" placeholder="Enter property fee" value="{{calculator.propertyFee}}" bindinput="onCalculatorInput" data-field="propertyFee" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Estimated Water Fee (yuan/month)</text>
+        <input class="form-input" type="digit" placeholder="Enter water fee" value="{{calculator.waterFee}}" bindinput="onCalculatorInput" data-field="waterFee" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Estimated Electricity Fee (yuan/month)</text>
+        <input class="form-input" type="digit" placeholder="Enter electricity fee" value="{{calculator.elecFee}}" bindinput="onCalculatorInput" data-field="elecFee" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Estimated Gas Fee (yuan/month)</text>
+        <input class="form-input" type="digit" placeholder="Enter gas fee" value="{{calculator.gasFee}}" bindinput="onCalculatorInput" data-field="gasFee" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Internet Fee (yuan/month)</text>
+        <input class="form-input" type="digit" placeholder="Enter internet fee" value="{{calculator.netFee}}" bindinput="onCalculatorInput" data-field="netFee" />
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">Deposit Months</text>
+        <input class="form-input" type="number" placeholder="Enter deposit months" value="{{calculator.depositMonths}}" bindinput="onCalculatorInput" data-field="depositMonths" />
+      </view>
+
+      <button class="verify-btn" bindtap="calculateTotal">Calculate Costs</button>
+    </view>
+
+    <!-- Calculation Result -->
+    <view class="calculator-result" wx:if="{{totalResult}}">
+      <view class="result-header success">
+        <text class="result-icon">💰</text>
+        <text class="result-title">Cost Summary</text>
+      </view>
+
+      <view class="result-tabs">
+        <view class="result-tab {{resultPeriod === 'month' ? 'active' : ''}}" bindtap="switchResultPeriod" data-period="month">
+          Monthly
+        </view>
+        <view class="result-tab {{resultPeriod === 'quarter' ? 'active' : ''}}" bindtap="switchResultPeriod" data-period="quarter">
+          Quarterly
+        </view>
+        <view class="result-tab {{resultPeriod === 'year' ? 'active' : ''}}" bindtap="switchResultPeriod" data-period="year">
+          Annual
+        </view>
+      </view>
+
+      <view class="total-card">
+        <text class="total-label">{{resultPeriod === 'month' ? 'Monthly' : resultPeriod === 'quarter' ? 'Quarterly' : 'Annual'}} Total Cost</text>
+        <text class="total-value">¥{{totalResult.total}}</text>
+        <text class="total-desc">Excluding deposit</text>
+      </view>
+
+      <view class="breakdown-card">
+        <text class="card-title">Cost Breakdown</text>
+        <view class="breakdown-item">
+          <text class="breakdown-label">Rent</text>
+          <text class="breakdown-value">¥{{totalResult.rent}}</text>
+        </view>
+        <view class="breakdown-item">
+          <text class="breakdown-label">Property Fee</text>
+          <text class="breakdown-value">¥{{totalResult.propertyFee}}</text>
+        </view>
+        <view class="breakdown-item">
+          <text class="breakdown-label">Utilities</text>
+          <text class="breakdown-value">¥{{totalResult.utilities}}</text>
+        </view>
+        <view class="breakdown-item">
+          <text class="breakdown-label">Internet</text>
+          <text class="breakdown-value">¥{{totalResult.netFee}}</text>
+        </view>
+        <view class="breakdown-item total">
+          <text class="breakdown-label">Deposit</text>
+          <text class="breakdown-value">¥{{totalResult.deposit}}</text>
+        </view>
+      </view>
+
+      <!-- Cost Analysis -->
+      <view class="analysis-card">
+        <text class="card-title">📊 Cost Distribution</text>
+        <view class="pie-chart">
+          <view class="pie-item" wx:for="{{totalResult.ratios}}" wx:key="name">
+            <view class="pie-color" style="background: {{item.color}};"></view>
+            <text class="pie-label">{{item.name}}</text>
+            <text class="pie-value">{{item.ratio}}%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="fee-check"></bottom-nav>
+</view>

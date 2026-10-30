@@ -1,0 +1,89 @@
+<!-- Rights Protection Tools Page -->
+<view class="page-container">
+  <view class="tools-container">
+    <view class="header-card">
+      <text class="header-icon">🛠️</text>
+      <text class="header-title">Rights Protection Tools</text>
+      <text class="header-desc">Professional tools to help with rights protection</text>
+    </view>
+
+    <!-- Contract Templates -->
+    <view class="tool-section">
+      <view class="section-header">
+        <text class="section-icon">📄</text>
+        <text class="section-title">Contract Templates</text>
+      </view>
+      <view class="contract-card">
+        <text class="contract-title">Rental Contract Templates</text>
+        <text class="contract-desc">Reviewed by professional lawyers, covering key clauses like deposit, utilities, maintenance</text>
+        <button class="contract-btn" bindtap="useContract">View Template</button>
+      </view>
+    </view>
+
+    <!-- Evidence Collection -->
+    <view class="tool-section">
+      <view class="section-header">
+        <text class="section-icon">📷</text>
+        <text class="section-title">Evidence Collection</text>
+      </view>
+      <view class="checklist">
+        <view class="checklist-item" wx:for="{{evidenceList}}" wx:key="id" bindtap="toggleEvidence" data-id="{{item.id}}">
+          <view class="checkbox {{item.checked ? 'checked' : ''}}">
+            <text class="check-icon">{{item.checked ? '✓' : ''}}</text>
+          </view>
+          <view class="checklist-content">
+            <text class="checklist-title">{{item.title}}</text>
+            <text class="checklist-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </view>
+      <button class="export-btn" bindtap="exportEvidence">Export Checklist</button>
+    </view>
+
+    <!-- Legal Channels -->
+    <view class="tool-section">
+      <view class="section-header">
+        <text class="section-icon">⚖️</text>
+        <text class="section-title">Legal Channels</text>
+      </view>
+      <view class="legal-list">
+        <view class="legal-item" bindtap="consultLawyer">
+          <view class="legal-icon" style="background: #1890ff;">
+            <text>👨‍⚖️</text>
+          </view>
+          <view class="legal-content">
+            <text class="legal-title">Online Lawyer Consultation</text>
+            <text class="legal-desc">Free professional legal advice</text>
+            <text class="legal-tag">24/7 Available</text>
+          </view>
+          <text class="legal-arrow">›</text>
+        </view>
+        <view class="legal-item" bindtap="searchLaw">
+          <view class="legal-icon" style="background: #52c41a;">
+            <text>🔍</text>
+          </view>
+          <view class="legal-content">
+            <text class="legal-title">Related Laws & Regulations</text>
+            <text class="legal-desc">Rental-related legal provisions</text>
+            <text class="legal-tag">Authoritative Interpretation</text>
+          </view>
+          <text class="legal-arrow">›</text>
+        </view>
+        <view class="legal-item" bindtap="viewCases">
+          <view class="legal-icon" style="background: #faad14;">
+            <text>📚</text>
+          </view>
+          <view class="legal-content">
+            <text class="legal-title">Rights Protection Case Library</text>
+            <text class="legal-desc">Reference others' rights protection experiences, including success and failure cases</text>
+            <text class="legal-tag">3000+ Cases</text>
+          </view>
+          <text class="legal-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="rights-protect"></bottom-nav>
+</view>

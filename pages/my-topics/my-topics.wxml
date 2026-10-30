@@ -1,0 +1,47 @@
+<!-- My Topics Page -->
+<view class="page-container">
+  <!-- My Topics List -->
+  <view class="topics-section">
+    <view class="topics-list">
+      <view class="topic-item" wx:for="{{topics}}" wx:key="id" bindtap="goToTopicDetail" data-topic-id="{{item.id}}">
+        <view class="topic-header">
+          <text class="topic-title">{{item.title}}</text>
+        </view>
+
+        <text class="topic-content">{{item.content}}</text>
+
+        <view class="topic-stats">
+          <view class="stat-item">
+            <text class="stat-icon">💬</text>
+            <text class="stat-value">{{item.comments}}</text>
+            <text class="stat-label">Comments</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-icon">❤️</text>
+            <text class="stat-value">{{item.likes}}</text>
+            <text class="stat-label">Likes</text>
+          </view>
+          <view class="stat-item">
+            <text class="stat-icon">👁️</text>
+            <text class="stat-value">{{item.views}}</text>
+            <text class="stat-label">Views</text>
+          </view>
+        </view>
+
+        <text class="topic-time">{{item.time}}</text>
+      </view>
+
+      <!-- Empty State -->
+      <view class="empty-state" wx:if="{{topics.length === 0}}">
+        <text class="empty-icon">💬</text>
+        <text class="empty-text">No topics yet</text>
+        <button class="empty-btn" bindtap="publishTopic">Publish Topic</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- Publish Button -->
+  <view class="fab-button" bindtap="publishTopic">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

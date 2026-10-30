@@ -1,0 +1,65 @@
+<!-- Favorite Detail Page -->
+<view class="page-container">
+  <!-- Topic Content -->
+  <view class="topic-content">
+    <!-- Author Info -->
+    <view class="author-info">
+      <image class="author-avatar" src="{{topic.avatar}}" mode="aspectFill"></image>
+      <view class="author-details">
+        <text class="author-name">{{topic.author}}</text>
+        <text class="publish-time">{{topic.createTime}}</text>
+      </view>
+      <button class="follow-btn" bindtap="followAuthor">Follow</button>
+    </view>
+
+    <!-- Topic Title -->
+    <text class="topic-title">{{topic.title}}</text>
+
+    <!-- Topic Category and Tags -->
+    <view class="topic-meta">
+      <text class="topic-category">{{topic.category}}</text>
+      <view class="topic-tags">
+        <text class="tag" wx:for="{{topic.tags}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- Topic Content -->
+    <text class="topic-text" user-select>{{topic.content}}</text>
+
+    <!-- Image Gallery -->
+    <view class="topic-images" wx:if="{{topic.images && topic.images.length > 0}}">
+      <image
+        class="topic-image"
+        wx:for="{{topic.images}}"
+        wx:key="index"
+        src="{{item}}"
+        mode="aspectFill"
+        bindtap="previewImage"
+        data-url="{{item}}">
+      </image>
+    </view>
+
+    <!-- Action Bar -->
+    <view class="topic-actions">
+      <view class="action-item" bindtap="toggleLike">
+        <text class="action-icon">👍</text>
+        <text class="action-count">{{topic.likes || 0}}</text>
+      </view>
+      <view class="action-item" bindtap="toggleFavorite">
+        <text class="action-icon">{{isFavorited ? '⭐' : '☆'}}</text>
+        <text class="action-count">{{isFavorited ? 'Favorited' : 'Favorite'}}</text>
+      </view>
+      <view class="action-item">
+        <text class="action-icon">💬</text>
+        <text class="action-count">{{topic.comments || 0}}</text>
+      </view>
+      <view class="action-item" bindtap="onShareAppMessage">
+        <text class="action-icon">📤</text>
+        <text class="action-count">Share</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="profile"></bottom-nav>
+</view>

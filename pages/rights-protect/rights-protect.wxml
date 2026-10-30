@@ -1,0 +1,83 @@
+<!-- Rights Protection Page -->
+<view class="page-container">
+  <!-- Function Navigation -->
+  <view class="function-grid">
+    <view class="function-card apply" bindtap="goToApply">
+      <view class="function-icon">📝</view>
+      <text class="function-title">File Claim</text>
+      <text class="function-desc">Submit your rights claim</text>
+    </view>
+    <view class="function-card tools" bindtap="goToTools">
+      <view class="function-icon">🛠️</view>
+      <text class="function-title">Resources</text>
+      <text class="function-desc">Contract templates · Legal help</text>
+    </view>
+    <view class="function-card query" bindtap="goToQuery">
+      <view class="function-icon">🔍</view>
+      <text class="function-title">Track Progress</text>
+      <text class="function-desc">Check case status</text>
+    </view>
+    <view class="function-card help" bindtap="goToHelp">
+      <view class="function-icon">❓</view>
+      <text class="function-title">Guide</text>
+      <text class="function-desc">Step-by-step instructions</text>
+    </view>
+  </view>
+
+  <!-- My Rights Records -->
+  <view class="section-header">
+    <text class="section-title">My Rights Cases</text>
+    <text class="more-text" bindtap="viewAllRecords">View All ›</text>
+  </view>
+
+  <view class="records-list" wx:if="{{rightsRecords.length > 0}}">
+    <view class="record-item" wx:for="{{rightsRecords}}" wx:key="id" bindtap="viewRecord" data-id="{{item.id}}">
+      <view class="record-header">
+        <view class="record-type {{item.type}}">{{item.typeText}}</view>
+        <view class="record-status {{item.status}}">{{item.statusText}}</view>
+      </view>
+      <view class="record-content">
+        <text class="record-title">{{item.title}}</text>
+        <text class="record-time">{{item.createTime}}</text>
+      </view>
+      <view class="record-footer">
+        <text class="record-no">Case No: {{item.orderNo}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-records" wx:else>
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">No rights cases yet</text>
+    <button class="empty-btn" bindtap="goToApply">File a Claim Now</button>
+  </view>
+
+  <!-- Rights Type Statistics -->
+  <view class="section-title">Case Type Statistics</view>
+  <view class="stats-card">
+    <view class="stat-bar" wx:for="{{typeStats}}" wx:key="type">
+      <view class="stat-header">
+        <text class="stat-type">{{item.type}}</text>
+        <text class="stat-count">{{item.count}} cases</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{item.percent}}%; background: {{item.color}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Rights Process Guide -->
+  <view class="section-title">Rights Process Guide</view>
+  <view class="process-card">
+    <view class="process-item" wx:for="{{processSteps}}" wx:key="id">
+      <view class="process-number">{{item.id}}</view>
+      <view class="process-content">
+        <text class="process-title">{{item.title}}</text>
+        <text class="process-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="rights-protect"></bottom-nav>
+</view>

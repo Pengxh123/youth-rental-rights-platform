@@ -1,0 +1,22 @@
+<view class="bottom-nav">
+  <view class="nav-item {{currentPage === 'index' ? 'active' : ''}}" bindtap="switchTab" data-page="index">
+    <view class="nav-icon">🏠</view>
+    <text class="nav-text">Home</text>
+  </view>
+  <view class="nav-item {{currentPage === 'house-map' ? 'active' : ''}}" bindtap="switchTab" data-page="house-map">
+    <view class="nav-icon">🗺️</view>
+    <text class="nav-text">Map</text>
+  </view>
+  <view class="nav-item {{currentPage === 'ai-assistant' ? 'active' : ''}}" bindtap="switchTab" data-page="ai-assistant">
+    <view class="nav-icon">💬</view>
+    <text class="nav-text">AI Assistant</text>
+  </view>
+  <view class="nav-item {{currentPage === 'rights-protect' ? 'active' : ''}}" bindtap="switchTab" data-page="rights-protect">
+    <view class="nav-icon">🛡️</view>
+    <text class="nav-text">Rights</text>
+  </view>
+  <view class="nav-item {{currentPage === 'profile' ? 'active' : ''}}" bindtap="switchTab" data-page="profile">
+    <view class="nav-icon">👤</view>
+    <text class="nav-text">Profile</text>
+  </view>
+</view>

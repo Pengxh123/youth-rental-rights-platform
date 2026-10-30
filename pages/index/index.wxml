@@ -1,0 +1,201 @@
+<!-- Home Page -->
+<view class="page-container">
+  <!-- Background decoration -->
+  <view class="bg-decoration"></view>
+  <view class="bg-circle bg-circle-1"></view>
+  <view class="bg-circle bg-circle-2"></view>
+
+  <!-- Custom navigation bar -->
+  <view class="custom-navbar">
+    <view class="navbar-content">
+      <view class="nav-input-container">
+        <view class="location-box" bindtap="handleLocationClick">
+          <view class="location-content">
+            <text class="location-icon">📍</text>
+            <text class="location-text">{{region[0]}}{{region[1]}}{{region[2] || ''}}</text>
+            <text class="arrow-down">▼</text>
+          </view>
+        </view>
+        <view class="search-box" bindtap="handleSearchClick">
+          <view class="search-content">
+            <text class="search-icon">🔍</text>
+            <input 
+              class="search-input" 
+              placeholder="Search rental information" 
+              value="{{searchText}}" 
+              bindinput="onSearchInput"
+              bindconfirm="onSearch"
+            />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Content area -->
+  <view class="content-wrapper">
+    <!-- Warning carousel -->
+    <view class="warning-banner">
+      <swiper class="warning-swiper" indicator-dots="{{true}}" autoplay="{{false}}" interval="3000" duration="500" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff">
+        <swiper-item wx:for="{{warnings}}" wx:key="id">
+          <view class="warning-item {{item.level}}">
+            <view class="warning-icon-wrap">
+              <text class="warning-icon">{{item.level === 'high' ? '⚠️' : '💡'}}</text>
+            </view>
+            <text class="warning-text">{{item.text}}</text>
+            <text class="warning-badge">{{item.level === 'high' ? 'High Risk' : 'Reminder'}}</text>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- Core functions -->
+    <view class="core-functions">
+      <view class="function-item housing" bindtap="navigateTo" data-page="/pages/housing-verify/housing-verify">
+        <view class="function-icon-wrap">
+          <view class="function-icon">
+            <text>🏠</text>
+          </view>
+        </view>
+        <text class="function-text">Housing Guide</text>
+        <text class="function-desc">Area prices · Tips</text>
+      </view>
+      <view class="function-item map-house" bindtap="navigateTo" data-page="/pages/house-map/house-map">
+        <view class="function-icon-wrap">
+          <view class="function-icon">
+            <text>🗺️</text>
+          </view>
+        </view>
+        <text class="function-text">Map Search</text>
+        <text class="function-desc">Location · Nearby rentals</text>
+      </view>
+      <view class="function-item fee" bindtap="navigateTo" data-page="/pages/fee-check/fee-check">
+        <view class="function-icon-wrap">
+          <view class="function-icon">
+            <text>💰</text>
+          </view>
+        </view>
+        <text class="function-text">Fee Verify</text>
+        <text class="function-desc">Utility standards · Compare</text>
+      </view>
+      <view class="function-item rights" bindtap="navigateTo" data-page="/pages/rights-protect/rights-protect">
+        <view class="function-icon-wrap">
+          <view class="function-icon">
+            <text>⚖️</text>
+          </view>
+        </view>
+        <text class="function-text">Rights Protect</text>
+        <text class="function-desc">Claims · Legal help</text>
+      </view>
+    </view>
+
+<!-- Quick access -->
+<view class="section">
+  <view class="section-header">
+    <text class="section-title">Quick Access</text>
+  </view>
+  <view class="emergency-card">
+
+    <view class="emergency-item" bindtap="callHotline" data-phone="12345">
+      <view class="emergency-icon">
+        <text>📞</text>
+      </view>
+      <view class="emergency-content">
+        <text class="emergency-title">12345 Hotline</text>
+        <text class="emergency-desc">Government service hotline</text>
+      </view>
+    </view>
+    <view class="emergency-item" bindtap="callHotline" data-phone="12319">
+      <view class="emergency-icon">
+        <text>🏛️</text>
+      </view>
+      <view class="emergency-content">
+        <text class="emergency-title">Housing Dept</text>
+        <text class="emergency-desc">Property complaints & regulation</text>
+      </view>
+    </view>
+    <view class="emergency-item" bindtap="callHotline" data-phone="110">
+      <view class="emergency-icon">
+        <text>👮</text>
+      </view>
+      <view class="emergency-content">
+        <text class="emergency-title">Emergency</text>
+        <text class="emergency-desc">Fraud or danger</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+    <!-- Help Center entry -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">Help Center</text>
+      </view>
+      <view class="help-card" bindtap="navigateTo" data-page="/pages/help-center/help-center">
+        <view class="help-icon" style="background: linear-gradient(135deg, #40a9ff 0%, #69c0ff 100%); color: #ffffff;">
+          <text>❓</text>
+        </view>
+        <view class="help-content">
+          <text class="help-title">FAQ</text>
+          <text class="help-desc">Rental guide, rights process, app usage</text>
+        </view>
+        <text class="help-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- Hot Topics -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">Hot Topics</text>
+        <text class="more-text" bindtap="navigateTo" data-page="/pages/discussion/discussion">View more ›</text>
+      </view>
+      <view class="topic-list">
+        <view class="topic-item" wx:for="{{hotTopics}}" wx:key="id" bindtap="viewTopic" data-id="{{item.id}}">
+          <view class="topic-tags">
+            <text class="topic-tag">🔥</text>
+            <text class="topic-category">{{item.category}}</text>
+          </view>
+          <text class="topic-title">{{item.title}}</text>
+          <view class="topic-meta">
+            <text class="topic-author">{{item.author}}</text>
+            <text class="topic-stats">{{item.views}} views · {{item.comments}} comments</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Tips -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">Tips</text>
+      </view>
+      <view class="tips-card">
+        <view class="tip-item" wx:for="{{tips}}" wx:key="id">
+          <view class="tip-number">{{item.id}}</view>
+          <text class="tip-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Statistics -->
+    <view class="stats-section">
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalUsers}}</text>
+        <text class="stat-label">Users</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.totalCases}}</text>
+        <text class="stat-label">Cases</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.successRate}}%</text>
+        <text class="stat-label">Success</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom navigation -->
+  <bottom-nav currentPage="index"></bottom-nav>
+</view>

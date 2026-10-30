@@ -1,0 +1,99 @@
+<!-- pages/success-cases/success-cases.wxml -->
+<view class="page-container">
+  <!-- Page Header -->
+  <view class="page-header">
+    <text class="header-title">Rights Protection Case Library</text>
+  </view>
+
+  <!-- Filter Tags -->
+  <view class="filter-section">
+    <view class="filter-scroll">
+      <view 
+        class="filter-item {{activeFilter === 'all' ? 'active' : ''}}" 
+        data-type="all"
+        bindtap="filterByType"
+      >
+        All
+      </view>
+      <view 
+        class="filter-item {{activeFilter === 'deposit' ? 'active' : ''}}" 
+        data-type="deposit"
+        bindtap="filterByType"
+      >
+        Deposit
+      </view>
+      <view 
+        class="filter-item {{activeFilter === 'utility' ? 'active' : ''}}" 
+        data-type="utility"
+        bindtap="filterByType"
+      >
+        Utilities
+      </view>
+      <view 
+        class="filter-item {{activeFilter === 'contract' ? 'active' : ''}}" 
+        data-type="contract"
+        bindtap="filterByType"
+      >
+        Contract
+      </view>
+      <view 
+        class="filter-item {{activeFilter === 'sublandlord' ? 'active' : ''}}" 
+        data-type="sublandlord"
+        bindtap="filterByType"
+      >
+        Sub-landlord
+      </view>
+      <view 
+        class="filter-item {{activeFilter === 'fraud' ? 'active' : ''}}" 
+        data-type="fraud"
+        bindtap="filterByType"
+      >
+        Fraud
+      </view>
+    </view>
+  </view>
+
+  <!-- Case List -->
+  <view class="cases-section">
+    <view class="case-card" wx:for="{{cases}}" wx:key="id" bindtap="viewCase" data-id="{{item.id}}">
+      <view class="case-header">
+        <view class="case-tag {{item.type}}">{{typeLabels[item.type] || item.type}}</view>
+        <view class="case-status {{item.status === 'success' ? 'success' : 'failed'}}">{{item.status === 'success' ? 'Success' : 'Failed'}}</view>
+      </view>
+      
+      <view class="case-title">{{item.title}}</view>
+      <view class="case-desc">{{item.desc}}</view>
+      
+      <view class="case-info">
+        <view class="info-item" wx:if="{{item.status === 'success'}}">
+          <text class="info-label">Amount Recovered</text>
+          <text class="info-value">¥{{item.amount}}</text>
+        </view>
+        <view class="info-item" wx:else>
+          <text class="info-label">Failure Reason</text>
+          <text class="info-value">{{item.reason || 'Insufficient evidence'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">Processing Time</text>
+          <text class="info-value">{{item.time}}</text>
+        </view>
+      </view>
+
+      <view class="case-process">
+        <view class="process-title">Processing Flow</view>
+        <view class="process-timeline">
+          <view class="timeline-item" wx:for="{{item.process}}" wx:key="title">
+            <view class="timeline-dot"></view>
+            <view class="timeline-content">
+              <text class="timeline-title">{{item.title}}</text>
+              <text class="timeline-time">{{item.time}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="success-cases"></bottom-nav>
+</view>

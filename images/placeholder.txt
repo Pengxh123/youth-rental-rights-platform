@@ -1,0 +1,20 @@
+# Images Directory
+
+This directory will contain tab bar icons and other images.
+
+For the tab bar to work properly, you need to add these image files:
+
+1. tab-home.png - Home icon (inactive)
+2. tab-home-active.png - Home icon (active)
+3. tab-house.png - House icon (inactive)
+4. tab-house-active.png - House icon (active)
+5. tab-check.png - Check icon (inactive)
+6. tab-check-active.png - Check icon (active)
+7. tab-discuss.png - Discuss icon (inactive)
+8. tab-discuss-active.png - Discuss icon (active)
+9. tab-user.png - User icon (inactive)
+10. tab-user-active.png - User icon (active)
+
+Recommended size: 81px × 81px for tab bar icons.
+
+You can use emoji or simple colored squares as placeholders during development.

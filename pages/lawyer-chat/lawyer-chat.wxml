@@ -1,0 +1,46 @@
+<!-- Pro Bono Lawyer Consultation Page -->
+<view class="page-container">
+  <!-- Lawyer Team Info -->
+  <view class="lawyer-info">
+    <view class="lawyer-avatar">⚖️</view>
+    <view class="lawyer-details">
+      <text class="lawyer-name">Pro Bono Lawyer Team</text>
+      <text class="lawyer-specialty">Real Estate & Rental Law Expert</text>
+      <text class="lawyer-desc">Professional rental rights legal consultation service</text>
+    </view>
+  </view>
+
+  <!-- Chat Area -->
+  <view class="chat-container">
+    <!-- System Message -->
+    <view class="message system-message">
+      <text class="system-text">Hello! Welcome to consult our pro bono lawyer team. We provide professional rental rights legal consultation.</text>
+    </view>
+    
+    <view class="message system-message">
+      <text class="system-text">Please describe your issue, we will respond ASAP.</text>
+    </view>
+
+    <!-- Chat Content Area -->
+    <view class="chat-messages">
+      <!-- Chat history will be displayed here -->
+      <view wx:for="{{messages}}" wx:key="{{item.timestamp}}" class="message {{item.type === 'user' ? 'user-message' : 'lawyer-message'}}">
+        <text class="message-text">{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Area Container -->
+  <view class="bottom-container">
+    <!-- Input Area -->
+    <view class="input-container">
+      <input type="text" class="input-field" placeholder="Enter your question..." bindinput="onInputChange" value="{{inputText}}"/>
+      <button class="send-btn" bindtap="sendMessage" disabled="{{!inputText}}">Send</button>
+    </view>
+
+    <!-- Bottom Tips -->
+    <view class="bottom-tip">
+      <text class="tip-text">⚠️ This service is pro bono, for reference only, not legal advice</text>
+    </view>
+  </view>
+</view>

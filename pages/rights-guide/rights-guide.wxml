@@ -1,0 +1,231 @@
+<!-- Rights Protection Guide Page -->
+<view class="page-container">
+  <view class="guide-container">
+    <view class="header-card">
+      <text class="header-icon">❓</text>
+      <text class="header-title">Rights Protection Guide</text>
+      <text class="header-desc">Learn about rights protection process and tips</text>
+    </view>
+
+    <!-- Quick Navigation -->
+    <view class="quick-nav">
+      <view class="nav-item" bindtap="scrollTo" data-target="process">
+        <text class="nav-icon">1️⃣</text>
+        <text class="nav-text">Process</text>
+      </view>
+      <view class="nav-item" bindtap="scrollTo" data-target="evidence">
+        <text class="nav-icon">2️⃣</text>
+        <text class="nav-text">Evidence</text>
+      </view>
+      <view class="nav-item" bindtap="scrollTo" data-target="channels">
+        <text class="nav-icon">3️⃣</text>
+        <text class="nav-text">Channels</text>
+      </view>
+      <view class="nav-item" bindtap="scrollTo" data-target="faq">
+        <text class="nav-icon">4️⃣</text>
+        <text class="nav-text">FAQ</text>
+      </view>
+    </view>
+
+    <!-- Rights Protection Process -->
+    <view class="guide-section" id="process">
+      <view class="section-header">
+        <text class="section-icon">📋</text>
+        <text class="section-title">Rights Protection Process</text>
+      </view>
+      <view class="process-list">
+        <view class="process-item">
+          <view class="process-number">1</view>
+          <view class="process-content">
+            <text class="process-title">Collect Evidence</text>
+            <text class="process-desc">Prepare rental contract, payment receipts, chat records and other evidence materials</text>
+            <view class="process-tags">
+              <text class="process-tag important">Important</text>
+              <text class="process-tag time">1-2 days</text>
+            </view>
+          </view>
+        </view>
+        <view class="process-item">
+          <view class="process-number">2</view>
+          <view class="process-content">
+            <text class="process-title">Contact and Negotiate</text>
+            <text class="process-desc">First try to resolve the issue through friendly negotiation with the landlord</text>
+            <view class="process-tags">
+              <text class="process-tag normal">Recommended</text>
+              <text class="process-tag time">3-7 days</text>
+            </view>
+          </view>
+        </view>
+        <view class="process-item">
+          <view class="process-number">3</view>
+          <view class="process-content">
+            <text class="process-title">Platform Complaint</text>
+            <text class="process-desc">Submit rights protection application through this platform for professional assistance</text>
+            <view class="process-tags">
+              <text class="process-tag highlight">Recommended</text>
+              <text class="process-tag time">Immediate</text>
+            </view>
+          </view>
+        </view>
+        <view class="process-item">
+          <view class="process-number">4</view>
+          <view class="process-content">
+            <text class="process-title">Government Department Complaint</text>
+            <text class="process-desc">Contact housing department or 12345 hotline to file a complaint</text>
+            <view class="process-tags">
+              <text class="process-tag important">If Necessary</text>
+              <text class="process-tag time">1-3 days</text>
+            </view>
+          </view>
+        </view>
+        <view class="process-item">
+          <view class="process-number">5</view>
+          <view class="process-content">
+            <text class="process-title">Legal Action</text>
+            <text class="process-desc">Seek legal aid or file a lawsuit to resolve the dispute</text>
+            <view class="process-tags">
+              <text class="process-tag important">Last Resort</text>
+              <text class="process-tag time">As Needed</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Evidence Collection -->
+    <view class="guide-section" id="evidence">
+      <view class="section-header">
+        <text class="section-icon">📷</text>
+        <text class="section-title">Evidence Collection Checklist</text>
+      </view>
+      <view class="evidence-grid">
+        <view class="evidence-item required">
+          <view class="evidence-icon">📄</view>
+          <view class="evidence-content">
+            <text class="evidence-title">Rental Contract</text>
+            <text class="evidence-desc">Complete rental contract with signatures from both parties</text>
+            <text class="evidence-tag required">Required</text>
+          </view>
+        </view>
+        <view class="evidence-item required">
+          <view class="evidence-icon">💳</view>
+          <view class="evidence-content">
+            <text class="evidence-title">Payment Receipt</text>
+            <text class="evidence-desc">Rent, deposit transfer records or receipts</text>
+            <text class="evidence-tag required">Required</text>
+          </view>
+        </view>
+        <view class="evidence-item recommended">
+          <view class="evidence-icon">🏠</view>
+          <view class="evidence-content">
+            <text class="evidence-title">Property Proof</text>
+            <text class="evidence-desc">Landlord's property certificate or purchase contract</text>
+            <text class="evidence-tag recommended">Recommended</text>
+          </view>
+        </view>
+        <view class="evidence-item recommended">
+          <view class="evidence-icon">💬</view>
+          <view class="evidence-content">
+            <text class="evidence-title">Communication Records</text>
+            <text class="evidence-desc">Screenshots of chat records with landlord</text>
+            <text class="evidence-tag recommended">Recommended</text>
+          </view>
+        </view>
+        <view class="evidence-item optional">
+          <view class="evidence-icon">📸</view>
+          <view class="evidence-content">
+            <text class="evidence-title">Property Photos</text>
+            <text class="evidence-desc">Comparison photos before move-in and after move-out</text>
+            <text class="evidence-tag optional">Optional</text>
+          </view>
+        </view>
+        <view class="evidence-item optional">
+          <view class="evidence-icon">📞</view>
+          <view class="evidence-content">
+            <text class="evidence-title">Audio Evidence</text>
+            <text class="evidence-desc">Recordings from negotiation process (must be legal)</text>
+            <text class="evidence-tag optional">Optional</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Rights Protection Channels -->
+    <view class="guide-section" id="channels">
+      <view class="section-header">
+        <text class="section-icon">🏛️</text>
+        <text class="section-title">Rights Protection Channels</text>
+      </view>
+      <view class="channels-list">
+        <view class="channel-item" bindtap="call12345">
+          <view class="channel-icon" style="background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%);">
+            <text>📞</text>
+          </view>
+          <view class="channel-content">
+            <text class="channel-title">12345 Hotline</text>
+            <text class="channel-desc">National Government Service Hotline</text>
+            <text class="channel-phone">Call: 12345</text>
+          </view>
+          <text class="channel-arrow">›</text>
+        </view>
+        <view class="channel-item" bindtap="gotoHelpCenter">
+          <view class="channel-icon" style="background: linear-gradient(135deg, #1890ff 0%, #36cfc9 100%);">
+            <text>🏛️</text>
+          </view>
+          <view class="channel-content">
+            <text class="channel-title">Housing Department</text>
+            <text class="channel-desc">Property Complaints and Oversight</text>
+            <text class="channel-phone">Call: 12319</text>
+          </view>
+          <text class="channel-arrow">›</text>
+        </view>
+        <view class="channel-item" bindtap="callPolice">
+          <view class="channel-icon" style="background: linear-gradient(135deg, #faad14 0%, #ffc53d 100%);">
+            <text>👮</text>
+          </view>
+          <view class="channel-content">
+            <text class="channel-title">Emergency Call</text>
+            <text class="channel-desc">Call when encountering fraud or danger</text>
+            <text class="channel-phone">Call: 110</text>
+          </view>
+          <text class="channel-arrow">›</text>
+        </view>
+
+      </view>
+    </view>
+
+    <!-- Common Questions -->
+    <view class="guide-section" id="faq">
+      <view class="section-header">
+        <text class="section-icon">❓</text>
+        <text class="section-title">Common Questions</text>
+      </view>
+      <view class="faq-list">
+        <view class="faq-item" bindtap="toggleFaq" data-index="{{index}}" wx:for="{{faqs}}" wx:key="index">
+          <view class="faq-question">
+            <text class="faq-icon">{{item.expanded ? '▼' : '▶'}}</text>
+            <text class="faq-q">Q：{{item.question}}</text>
+          </view>
+          <view class="faq-answer" wx:if="{{item.expanded}}">
+            <text class="faq-a">{{item.answer}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Helpful Tips -->
+    <view class="tips-card">
+      <text class="tips-title">💡 Helpful Tips</text>
+      <view class="tips-list">
+        <text class="tip-item">• Stay calm and protect your rights rationally, avoid extreme actions</text>
+        <text class="tip-item">• Collect evidence thoroughly and store original copies carefully</text>
+        <text class="tip-item">• Prefer negotiation first, only file complaints if negotiation fails</text>
+        <text class="tip-item">• Be mindful of deadlines and act promptly when protecting your rights</text>
+        <text class="tip-item">• Immediately contact police if you encounter fraud</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="rights-protect"></bottom-nav>
+</view>

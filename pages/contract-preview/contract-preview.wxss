@@ -1,0 +1,135 @@
+.page-container {
+  background: #5a5a5a;
+  min-height: 100vh;
+  padding: 40rpx 20rpx;
+}
+
+.contract-paper {
+  background: #fff;
+  padding: 60rpx 50rpx;
+  box-shadow: 0 10rpx 40rpx rgba(0, 0, 0, 0.3);
+  font-family: 'SimSun', 'Songti SC', serif;
+}
+
+.contract-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 60rpx;
+  color: #000;
+  letter-spacing: 4rpx;
+}
+
+.contract-section {
+  margin-bottom: 50rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  color: #000;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25rpx;
+  font-size: 28rpx;
+  color: #000;
+}
+
+.label {
+  min-width: 180rpx;
+  color: #000;
+}
+
+.underline {
+  flex: 1;
+  height: 2rpx;
+  background: #000;
+  border-bottom: 2rpx solid #000;
+}
+
+.contract-content {
+  margin-top: 40rpx;
+}
+
+.article {
+  margin-bottom: 50rpx;
+}
+
+.article-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 25rpx;
+  color: #000;
+}
+
+.article-text {
+  font-size: 28rpx;
+  line-height: 2;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-align: justify;
+  padding-left: 20rpx;
+}
+
+.article.highlight {
+  background: #fffbe6;
+  padding: 30rpx 20rpx;
+  border-left: 6rpx solid #faad14;
+  border-radius: 8rpx;
+}
+
+.article-text.warning {
+  color: #d48806;
+  font-weight: 500;
+}
+
+.input-line {
+  display: inline-block;
+  min-width: 150rpx;
+  height: 36rpx;
+  border-bottom: 2rpx solid #000;
+  margin: 0 8rpx;
+  vertical-align: middle;
+}
+
+.input-line-mini {
+  display: inline-block;
+  min-width: 100rpx;
+  height: 36rpx;
+  border-bottom: 2rpx solid #000;
+  margin: 0 8rpx;
+  vertical-align: middle;
+}
+
+.signature-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80rpx;
+  padding-top: 60rpx;
+}
+
+.signature-box {
+  width: 48%;
+}
+
+.signature-label {
+  font-size: 28rpx;
+  color: #000;
+  margin-bottom: 40rpx;
+}
+
+.signature-line {
+  width: 100%;
+  height: 80rpx;
+  border-bottom: 2rpx solid #000;
+  margin-bottom: 30rpx;
+}
+
+.signature-date {
+  font-size: 26rpx;
+  color: #000;
+}

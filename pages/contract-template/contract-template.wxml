@@ -1,0 +1,111 @@
+<!-- Rights Protection Resources Page -->
+<view class="page-container">
+  <!-- Template Introduction -->
+  <view class="intro-card">
+    <text class="intro-title">Anti-Pitfall Rental Contract Template</text>
+    <text class="intro-desc">This contract template has been reviewed by professional lawyers, covering common rental risks and protecting tenant rights</text>
+    <view class="intro-features">
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">Lawyer Reviewed</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">Risk Alerts</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">Free to Use</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Contract Key Points -->
+  <view class="section-title">Contract Key Points</view>
+  <view class="points-card">
+    <view class="point-item warning">
+      <text class="point-icon">⚠️</text>
+      <view class="point-content">
+        <text class="point-title">Deposit Refund Terms</text>
+        <text class="point-desc">Clearly specify deposit refund conditions and timeline, avoid vague terms</text>
+      </view>
+    </view>
+    <view class="point-item warning">
+      <text class="point-icon">⚠️</text>
+      <view class="point-content">
+        <text class="point-title">Utility Rates</text>
+        <text class="point-desc">Clearly specify utility rates and billing methods, indicate residential or commercial</text>
+      </view>
+    </view>
+    <view class="point-item normal">
+      <text class="point-icon">📝</text>
+      <view class="point-content">
+        <text class="point-title">Maintenance Responsibility</text>
+        <text class="point-desc">Clearly define property maintenance responsibilities to avoid disputes</text>
+      </view>
+    </view>
+    <view class="point-item normal">
+      <text class="point-icon">📝</text>
+      <view class="point-content">
+        <text class="point-title">Breach Terms</text>
+        <text class="point-desc">Clearly specify both parties' breach responsibilities and compensation standards</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Contract Preview -->
+  <view class="section-title">Contract Content Preview</view>
+  <view class="contract-preview">
+    <view class="contract-header">
+      <text class="contract-title">Residential Lease Agreement</text>
+    </view>
+    <view class="contract-body">
+      <text class="contract-section">Party A (Landlord):____________</text>
+      <text class="contract-section">ID Number:____________</text>
+      <text class="contract-section">Contact Number:____________</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">Party B (Tenant):____________</text>
+      <text class="contract-section">ID Number:____________</text>
+      <text class="contract-section">Contact Number:____________</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">Article 1: Basic Property Information</text>
+      <text class="contract-text">1. Party A agrees to lease their legally owned property to Party B, located at_________, with a construction area of _________ square meters.</text>
+      <text class="contract-text">2. The property is for residential purposes only. Party B shall not change the property's use without permission.</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">Article 2: Lease Term</text>
+      <text class="contract-text">Lease term from __/__/____ to __/__/____, totaling __ months.</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">Article 3: Rent and Payment Method</text>
+      <text class="contract-text">1. Monthly rent is RMB _________ Yuan (¥_______).</text>
+      <text class="contract-text">2. Payment method is _________ (Monthly/Quarterly/Annual).</text>
+      <text class="contract-text">3. First payment shall be made upon signing. Subsequent payments shall be made within ____ days before each period starts.</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">Article 4: Deposit</text>
+      <text class="contract-text highlight">1. Party B shall pay Party A a deposit of RMB _________ Yuan (¥_______), equivalent to ____ months' rent.</text>
+      <text class="contract-text">2. Upon lease expiration, if Party B has no breach, Party A shall refund the full deposit without interest within ___ days.</text>
+      <text class="contract-text highlight">3. Party A shall not withhold the deposit for any reason without justification.</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">Article 5: Water, Electricity and Gas Fees</text>
+      <text class="contract-text highlight">1. Water fee calculated at _________ Yuan/cubic meter (Residential/Commercial).</text>
+      <text class="contract-text highlight">2. Electricity fee calculated at _________ Yuan/kWh (Residential/Commercial).</text>
+      <text class="contract-text">3. Gas fee calculated according to local gas company standards.</text>
+      <text class="contract-text">4. Party B pays based on actual usage. Party A shall not overcharge.</text>
+      <text class="contract-section"></text>
+      <text class="contract-section">... (For more content, please download the full version)</text>
+    </view>
+  </view>
+
+  <!-- Action Buttons -->
+  <view class="action-buttons">
+    <button class="action-btn preview" bindtap="previewFull">Preview Online</button>
+    <button class="action-btn download" bindtap="downloadContract">Download Contract</button>
+  </view>
+
+  <!-- Usage Tips -->
+  <view class="tips-card">
+    <text class="tips-title">💡 Usage Tips</text>
+    <text class="tips-text">1. After downloading, please fill in complete information based on actual situation</text>
+    <text class="tips-text">2. Please read all terms carefully before signing, especially highlighted sections</text>
+    <text class="tips-text">3. If in doubt, recommend consulting a professional lawyer or seeking legal channels through this platform</text>
+  </view>
+</view>

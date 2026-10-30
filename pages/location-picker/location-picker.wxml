@@ -1,0 +1,54 @@
+<!-- Location Picker Page -->
+
+<view class="page-container">
+  <!-- Auto Location Area -->
+  <view class="location-card auto-location">
+    <view class="location-header">
+      <text class="location-title">📍 Current Location</text>
+      <text class="location-status">{{currentLocation ? 'Located' : 'Not Located'}}</text>
+    </view>
+    <view class="location-display">
+      <text class="location-text">{{region[0]}} · {{region[1]}} · {{region[2]}}</text>
+    </view>
+  </view>
+
+  <!-- Relocate Button - Screen Center -->
+  <view class="center-btn-container">
+    <button class="location-btn primary center-btn" bindtap="getLocation" disabled="{{isLocating}}">
+      {{isLocating ? 'Locating...' : 'Relocate'}}
+    </button>
+  </view>
+
+  <!-- Manual Selection Area -->
+  <view class="location-card manual-location">
+    <view class="location-header">
+      <text class="location-title">🗺️ Manual Selection</text>
+    </view>
+
+    <!-- Region Picker -->
+    <view class="picker-section">
+      <text class="picker-label">Select Province/City/District</text>
+      <picker mode="region" level="sub-district" value="{{region}}" bindchange="onRegionChange">
+        <view class="picker-box">
+          <text class="picker-text">{{region[0]}}{{region[1]}}{{region[2]}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Popular Cities -->
+    <view class="cities-section">
+      <text class="section-subtitle">Popular Cities</text>
+      <view class="city-grid">
+        <view class="city-item" wx:for="{{cityList}}" wx:key="*this" bindtap="selectCity" data-city="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Confirm Button -->
+  <view class="footer-actions">
+    <button class="confirm-btn" bindtap="confirmLocation">Confirm & Return</button>
+  </view>
+</view>

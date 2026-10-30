@@ -1,0 +1,364 @@
+/* pages/rights-tools/rights-tools.wxss */
+page {
+  background-color: #f5f5f5;
+}
+
+page {
+  background-color: #f5f5f5;
+}
+
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 15rpx;
+}
+
+.tools-container {
+  padding: 3rpx;
+  max-width: 700rpx;
+  margin: 0 auto;
+}
+
+.tool-section {
+  background: #fff;
+  border-radius: 4rpx;
+  padding: 3rpx;
+  margin-bottom: 2rpx;
+}
+
+.legal-item {
+  display: flex;
+  align-items: center;
+  padding: 3rpx;
+  background: #fafafa;
+  border-radius: 2rpx;
+}
+
+.legal-icon {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rpx;
+  flex-shrink: 0;
+}
+
+.legal-icon text {
+  font-size: 18rpx;
+}
+
+.legal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-title {
+  font-size: 15rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rpx;
+}
+
+.legal-desc {
+  font-size: 11rpx;
+  color: #999;
+  margin-bottom: 1rpx;
+}
+
+.legal-tag {
+  font-size: 9rpx;
+  color: #1890ff;
+  background: rgba(24, 144, 255, 0.1);
+  padding: 0rpx 0rpx;
+  border-radius: 1rpx;
+  align-self: flex-start;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rpx;
+}
+
+.section-icon {
+  font-size: 18rpx;
+  margin-right: 2rpx;
+}
+
+.section-title {
+  font-size: 19rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.tools-container {
+  padding: 30rpx;
+}
+
+.header-card {
+  text-align: center;
+  padding: 40rpx 0;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.header-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.header-desc {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+}
+
+.tool-section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.section-icon {
+  font-size: 40rpx;
+  margin-right: 15rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.contract-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 25rpx;
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  border-radius: 12rpx;
+}
+
+.contract-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.contract-desc {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 25rpx;
+}
+
+.contract-btn {
+  width: 200rpx;
+  height: 60rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.4);
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.checkbox {
+  width: 40rpx;
+  height: 40rpx;
+  border: 2rpx solid #d9d9d9;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  margin-top: 5rpx;
+}
+
+.checkbox.checked {
+  background: #52c41a;
+  border-color: #52c41a;
+}
+
+.check-icon {
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.checklist-content {
+  flex: 1;
+}
+
+.checklist-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.checklist-desc {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.5;
+}
+
+.export-btn {
+  width: 100%;
+  height: 80rpx;
+  background: #52c41a;
+  color: #fff;
+  border: none;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+}
+
+.legal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.legal-item {
+  display: flex;
+  align-items: center;
+  padding: 25rpx;
+  background: #fafafa;
+  border-radius: 16rpx;
+}
+
+.legal-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.legal-icon text {
+  font-size: 50rpx;
+}
+
+.legal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.legal-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.legal-tag {
+  font-size: 22rpx;
+  color: #1890ff;
+  background: rgba(24, 144, 255, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  align-self: flex-start;
+}
+
+.legal-arrow {
+  font-size: 40rpx;
+  color: #d9d9d9;
+}
+
+.fee-table {
+  border: 2rpx solid #e8e8e8;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.fee-header {
+  display: flex;
+  background: #f5f5f5;
+  border-bottom: 2rpx solid #e8e8e8;
+}
+
+.fee-row {
+  display: flex;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.fee-row:last-child {
+  border-bottom: none;
+}
+
+.fee-col {
+  flex: 1;
+  padding: 20rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.fee-col:first-child {
+  font-weight: bold;
+  color: #333;
+}
+
+.fee-col.highlight {
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.detail-btn {
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+  color: #1890ff;
+  border: 2rpx solid #1890ff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}

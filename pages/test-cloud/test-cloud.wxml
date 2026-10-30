@@ -1,0 +1,34 @@
+<view class="page-container">
+  <view class="header">Cloud Development Test Page</view>
+
+  <view class="test-section">
+    <view class="section-title">Test Cloud Functions</view>
+    <button class="test-btn" bindtap="testCloudFunction">Test Cloud Function Call</button>
+    <view class="result-box">
+      <text class="result-label">Result:</text>
+      <text class="result-text">{{testResult}}</text>
+    </view>
+  </view>
+
+  <view class="test-section">
+    <view class="section-title">Database Operations</view>
+    <button class="test-btn" bindtap="testDatabase">Add Test Listing</button>
+    <button class="test-btn secondary" bindtap="testGetHouses">Get Listing List</button>
+    <view class="result-box">
+      <text class="result-label">Result:</text>
+      <text class="result-text">{{dbResult}}</text>
+    </view>
+  </view>
+
+  <view class="test-section">
+    <view class="section-title">Status Information</view>
+    <view class="info-item">
+      <text class="info-label">Cloud Env ID:</text>
+      <text class="info-value">{{cloudEnv}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">Cloud Status:</text>
+      <text class="info-value {{cloudStatus === 'success' ? 'success' : 'error'}}">{{cloudStatusText}}</text>
+    </view>
+  </view>
+</view>

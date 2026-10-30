@@ -1,0 +1,774 @@
+/* pages/house-map/house-map.wxss */
+.page-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+/* Map container */
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.house-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Map toolbar */
+.map-toolbar {
+  position: fixed;
+  right: 20rpx;
+  bottom: 200rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  z-index: 100;
+}
+
+.toolbar-item {
+  width: 100rpx;
+  height: 100rpx;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.toolbar-item:active {
+  transform: scale(0.95);
+}
+
+.toolbar-icon {
+  font-size: 36rpx;
+  margin-bottom: 4rpx;
+}
+
+.toolbar-text {
+  font-size: 20rpx;
+  color: #666;
+}
+
+/* Current location card */
+.location-card {
+  position: fixed;
+  top: 20rpx;
+  left: 20rpx;
+  right: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.location-icon {
+  font-size: 40rpx;
+  flex-shrink: 0;
+}
+
+.location-address {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  min-width: 0;
+}
+
+.address-text {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.district-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* Search range selection */
+.radius-picker {
+  position: fixed;
+  top: 140rpx;
+  left: 20rpx;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 40rpx;
+  padding: 16rpx 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  backdrop-filter: blur(10rpx);
+}
+
+.radius-label {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.picker-value {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 26rpx;
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.picker-arrow {
+  font-size: 20rpx;
+}
+
+/* Listing stats */
+.house-stats {
+  position: fixed;
+  top: 140rpx;
+  right: 20rpx;
+  background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+  border-radius: 40rpx;
+  padding: 16rpx 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(255, 193, 7, 0.3);
+  z-index: 100;
+}
+
+.stats-text {
+  font-size: 26rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.stats-number {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin: 0 4rpx;
+}
+
+/* List container */
+.list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+/* List toolbar */
+.list-toolbar {
+  background: #fff;
+  padding: 20rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+/* Custom back button */
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-bottom: 20rpx;
+  padding: 12rpx 0;
+  font-size: 28rpx;
+  color: #333;
+  cursor: pointer;
+}
+
+.back-icon {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.back-text {
+  font-weight: 500;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 16rpx 24rpx;
+  background: #f5f5f5;
+  border-radius: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.search-icon {
+  font-size: 32rpx;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+/* Filter group */
+.filter-group {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+  overflow-x: auto;
+  padding-bottom: 8rpx;
+}
+
+.filter-group::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 16rpx 28rpx;
+  background: #f5f5f5;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  color: #666;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+  color: #fff;
+}
+
+.filter-btn .arrow {
+  font-size: 20rpx;
+}
+
+/* View switcher */
+.view-switcher {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  display: flex;
+  gap: 12rpx;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 40rpx;
+  padding: 8rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.switch-item {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  transition: all 0.3s ease;
+}
+
+.switch-item.active {
+  background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+}
+
+/* Listing list */
+.house-list {
+  flex: 1;
+  padding: 20rpx;
+  overflow-y: auto;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 24rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: #ccc;
+}
+
+/* Listing card */
+.house-item {
+  display: flex;
+  gap: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.house-item:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.house-images {
+  position: relative;
+  width: 240rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+}
+
+.house-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 16rpx;
+}
+
+.status-badge {
+  position: absolute;
+  top: 12rpx;
+  left: 12rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.status-badge.rented {
+  background: rgba(150, 150, 150, 0.9);
+}
+
+.type-badge {
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+}
+
+.house-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  min-width: 0;
+}
+
+.house-title {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.house-tags {
+  display: flex;
+  gap: 12rpx;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 6rpx 16rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  color: #666;
+}
+
+.house-location {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.location-icon {
+  font-size: 24rpx;
+  flex-shrink: 0;
+}
+
+.location-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.distance {
+  font-size: 22rpx;
+  color: #ffc107;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.house-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+}
+
+.price-value {
+  font-size: 36rpx;
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.price-unit {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.publish-time {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: #ccc;
+}
+
+.house-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  justify-content: center;
+}
+
+.action-btn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  transition: all 0.3s ease;
+}
+
+.action-btn.contact {
+  background: transparent;
+  box-shadow: none;
+}
+
+.action-btn.favorite {
+  background: transparent;
+  box-shadow: none;
+}
+
+.action-btn:active {
+  transform: scale(0.9);
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #ffc107;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* Detail popup */
+.detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 85vh;
+  background: #fff;
+  border-radius: 40rpx 40rpx 0 0;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #999;
+  z-index: 10;
+}
+
+.detail-header {
+  padding: 80rpx 28rpx 28rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.detail-title {
+  display: block;
+  font-size: 36rpx;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+  line-height: 1.4;
+}
+
+.detail-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+}
+
+.detail-images {
+  padding: 20rpx 28rpx;
+  display: flex;
+  gap: 16rpx;
+  white-space: nowrap;
+}
+
+.detail-image {
+  width: 400rpx;
+  height: 300rpx;
+  border-radius: 20rpx;
+  flex-shrink: 0;
+}
+
+.detail-basic {
+  padding: 28rpx;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.basic-item {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.basic-label {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.basic-value {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 600;
+}
+
+.detail-facilities {
+  padding: 28rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.facilities-title {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.facilities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.facility-tag {
+  padding: 8rpx 20rpx;
+  background: linear-gradient(135deg, #fffbf0 0%, #fff3cd 100%);
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  color: #f57c00;
+}
+
+.detail-address {
+  padding: 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.address-icon {
+  font-size: 32rpx;
+  flex-shrink: 0;
+}
+
+.address-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.distance-text {
+  font-size: 24rpx;
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.detail-description {
+  padding: 28rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.description-title {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.description-text {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+.detail-publisher {
+  padding: 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.publisher-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.publisher-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.publisher-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+}
+
+.publisher-phone {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.detail-actions {
+  padding: 28rpx;
+  display: flex;
+  gap: 20rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+
+.action-btn-secondary,
+.action-btn-primary {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.action-btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.action-btn-primary {
+  background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+  color: #333;
+  box-shadow: 0 8rpx 20rpx rgba(255, 193, 7, 0.3);
+}

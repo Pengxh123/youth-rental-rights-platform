@@ -1,0 +1,221 @@
+<!--pages/house-audit/house-audit.wxml-->
+<view class="page-container">
+  <!-- Top Filter -->
+  <view class="filter-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-input" 
+        placeholder="Search listing title" 
+        bindinput="onSearch"
+        value="{{filters.keyword}}"
+      />
+    </view>
+    
+    <picker mode="selector" range="{{statusOptions}}" range-key="label" bindchange="onStatusChange">
+      <view class="status-picker">
+        <text>{{currentStatusLabel}}</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+  
+  <!-- Listing List -->
+  <scroll-view class="house-list" scroll-y="{{true}}">
+    <view wx:if="{{houseList.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">No listings</text>
+    </view>
+    
+    <view 
+      class="house-card" 
+      wx:for="{{houseList}}" 
+      wx:key="id"
+      bindtap="viewDetail"
+      data-id="{{item.id}}"
+    >
+      <!-- Listing Images -->
+      <view class="house-images">
+        <image src="{{item.images[0]}}" mode="aspectFill" class="house-image"/>
+        <view class="status-badge status-{{item.status}}">
+          {{item.statusText}}
+        </view>
+      </view>
+      
+      <!-- Listing Info -->
+      <view class="house-info">
+        <view class="info-header">
+          <text class="house-title">{{item.title}}</text>
+          <view class="house-price">
+            <text class="price-value">¥{{item.price}}</text>
+            <text class="price-unit">/mo</text>
+          </view>
+        </view>
+        
+        <view class="house-tags">
+          <text class="tag">{{item.houseType}} bedroom</text>
+          <text class="tag">{{item.area}}㎡</text>
+          <text class="tag">{{item.floor}}</text>
+          <text class="tag">{{item.decoration}}</text>
+        </view>
+        
+        <view class="house-location">
+          <text class="location-icon">📍</text>
+          <text class="location-text">{{item.address}}</text>
+        </view>
+        
+        <view class="house-meta">
+          <text class="meta-time">Submitted: {{item.submitTime}}</text>
+        </view>
+        
+        <!-- Audit Note -->
+        <view class="audit-note" wx:if="{{item.status === 'rejected' && item.auditNote}}">
+          <text class="note-label">Audit Comment:</text>
+          <text class="note-text">{{item.auditNote}}</text>
+        </view>
+      </view>
+      
+      <!-- Action Buttons -->
+      <view class="house-actions" catchtap="true">
+        <button 
+          class="action-btn secondary" 
+          bindtap="editHouse" 
+          data-id="{{item.id}}"
+          wx:if="{{item.status === 'pending' || item.status === 'approved'}}"
+        >
+          Edit
+        </button>
+        
+        <button 
+          class="action-btn warning" 
+          bindtap="republish" 
+          data-id="{{item.id}}"
+          wx:if="{{item.status === 'rejected'}}"
+        >
+          Republish
+        </button>
+        
+        <button 
+          class="action-btn danger" 
+          bindtap="deleteHouse" 
+          data-id="{{item.id}}"
+        >
+          Delete
+        </button>
+      </view>
+    </view>
+    
+    <!-- Loading State -->
+    <view wx:if="{{loading}}" class="loading">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">Loading...</text>
+    </view>
+    
+    <!-- No More -->
+    <view wx:if="{{!hasMore && houseList.length > 0}}" class="no-more">
+      <text>No more listings</text>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- Detail Modal -->
+<view class="detail-modal" wx:if="{{showDetail && selectedHouse}}">
+  <view class="modal-mask" bindtap="closeDetail"></view>
+  <view class="modal-content">
+    <!-- Close Button -->
+    <view class="modal-close" bindtap="closeDetail">
+      <text>✕</text>
+    </view>
+    
+    <!-- Detail Content -->
+    <view class="detail-header">
+      <text class="detail-title">{{selectedHouse.title}}</text>
+      <view class="detail-status status-{{selectedHouse.status}}">
+        {{selectedHouse.statusText}}
+      </view>
+    </view>
+    
+    <!-- Image Carousel -->
+    <swiper class="detail-images" indicator-dots="{{true}}" autoplay="{{false}}">
+      <swiper-item wx:for="{{selectedHouse.images}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill" class="detail-image"/>
+      </swiper-item>
+    </swiper>
+    
+    <!-- Basic Info -->
+    <view class="detail-basic">
+      <view class="basic-item">
+        <text class="label">Monthly Rent:</text>
+        <text class="value price">¥{{selectedHouse.price}}/mo</text>
+      </view>
+      <view class="basic-item">
+        <text class="label">Layout:</text>
+        <text class="value">{{selectedHouse.houseType}} bedroom</text>
+      </view>
+      <view class="basic-item">
+        <text class="label">Area:</text>
+        <text class="value">{{selectedHouse.area}}㎡</text>
+      </view>
+      <view class="basic-item">
+        <text class="label">Floor:</text>
+        <text class="value">{{selectedHouse.floor}}</text>
+      </view>
+      <view class="basic-item">
+        <text class="label">Decoration:</text>
+        <text class="value">{{selectedHouse.decoration}}</text>
+      </view>
+      <view class="basic-item">
+        <text class="label">Rent Type:</text>
+        <text class="value">{{selectedHouse.rentTypeText}}</text>
+      </view>
+    </view>
+    
+    <!-- Address -->
+    <view class="detail-section">
+      <text class="section-title">Property Address</text>
+      <text class="section-content">{{selectedHouse.address}}</text>
+    </view>
+    
+    <!-- Submission Info -->
+    <view class="detail-section">
+      <text class="section-title">Submission Info</text>
+      <view class="section-content">
+        <text class="info-row">Submitter: {{selectedHouse.publisher.name}}</text>
+        <text class="info-row">Submitted: {{selectedHouse.submitTime}}</text>
+      </view>
+    </view>
+    
+    <!-- Audit Comment -->
+    <view class="detail-section" wx:if="{{selectedHouse.status === 'rejected' && selectedHouse.auditNote}}">
+      <text class="section-title">Audit Comment</text>
+      <view class="audit-note-box">
+        <text class="note-text">{{selectedHouse.auditNote}}</text>
+      </view>
+    </view>
+    
+    <!-- Action Buttons -->
+    <view class="detail-actions">
+      <button 
+        class="btn-secondary" 
+        bindtap="editHouse" 
+        data-id="{{selectedHouse.id}}"
+        wx:if="{{selectedHouse.status === 'pending' || selectedHouse.status === 'approved'}}"
+      >
+        Edit
+      </button>
+      
+      <button 
+        class="btn-warning" 
+        bindtap="republish" 
+        data-id="{{selectedHouse.id}}"
+        wx:if="{{selectedHouse.status === 'rejected'}}"
+      >
+        Republish
+      </button>
+      
+      <button class="btn-danger" bindtap="deleteHouse" data-id="{{selectedHouse.id}}">
+        Delete
+      </button>
+    </view>
+  </view>
+</view>

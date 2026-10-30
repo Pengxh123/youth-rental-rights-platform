@@ -1,0 +1,33 @@
+<!-- My Favorites Page -->
+<view class="page-container">
+  <!-- Page Header -->
+  <view class="page-header">
+    <view class="header-left">
+      <text class="page-title">My Favorites</text>
+      <text class="page-subtitle">{{favorites.length}} items</text>
+    </view>
+    <text class="clear-btn" wx:if="{{favorites.length > 0}}" bindtap="clearAll">Clear All</text>
+  </view>
+
+  <!-- Favorites List -->
+  <view class="favorites-list" wx:if="{{favorites.length > 0}}">
+    <view class="favorite-item" wx:for="{{favorites}}" wx:key="id" bindtap="viewDetail" data-item="{{item}}">
+      <view class="favorite-tag">{{item.type === 'topic' ? 'Topic' : item.type === 'house' ? 'House' : 'Other'}}</view>
+      <text class="favorite-title">{{item.title}}</text>
+      <text class="favorite-time">{{item.time}}</text>
+      <view class="favorite-delete" catchtap="removeFavorite" data-id="{{item.id}}">
+        <text class="delete-icon">🗑️</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Empty State -->
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">⭐</text>
+    <text class="empty-text">No favorites yet</text>
+    <button class="explore-btn" bindtap="goToExplore">Explore Now</button>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="profile"></bottom-nav>
+</view>

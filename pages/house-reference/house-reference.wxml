@@ -1,0 +1,238 @@
+<!-- pages/house-reference/house-reference.wxml -->
+<navigation-bar title="House Reference" />
+
+<view class="container">
+  <!-- City Selection Area -->
+  <view class="location-section">
+    <view class="location-header">
+      <text class="location-title">📍 Select City</text>
+      <view class="location-info">
+        <text wx:if="{{currentProvince && currentCity && currentDistrict}}" class="location-text">
+          {{currentProvince}} {{currentCity}} {{currentDistrict}}
+        </text>
+        <text wx:else class="location-text location-placeholder">
+          Please select province, city and district
+        </text>
+      </view>
+    </view>
+    <button class="location-button" bindtap="chooseCity">
+      Switch City
+    </button>
+  </view>
+
+  <!-- Regional Rental Data -->
+  <view wx:if="{{averageRent}}" class="data-section card">
+    <view class="section-header">
+      <text class="section-title">📊 Regional Rental Data</text>
+    </view>
+    <view class="base-price-card">
+      <text class="base-price-label">Average Monthly Rent Reference</text>
+      <text class="base-price-value">¥{{averageRent}}</text>
+      <text class="base-price-unit">/mo</text>
+    </view>
+    <view class="market-trend">
+      <text class="trend-label">Market Trend: </text>
+      <text class="trend-text">Steadily rising</text>
+    </view>
+  </view>
+
+  <!-- Price Reference by Layout -->
+  <view wx:if="{{roomTypes}}" class="housing-section card">
+    <view class="section-header">
+      <text class="section-title">🏠 Price Reference by Layout</text>
+    </view>
+    <view class="housing-list">
+      <view wx:for="{{roomTypes}}" wx:key="type" class="housing-item">
+        <view class="housing-info">
+          <text class="housing-type">{{item.type}}</text>
+          <text class="housing-area">{{item.area}}</text>
+        </view>
+        <view class="housing-price">
+          <text class="price-value">¥{{item.price}}</text>
+          <text class="price-trend">{{item.priceTrend}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Utility Price Reference -->
+  <view wx:if="{{electricityPrice}}" class="utility-section card">
+    <view class="section-header">
+      <text class="section-title">💧 Utility Price Reference</text>
+    </view>
+    <view class="utility-list">
+      <view class="utility-item">
+        <text class="utility-type">Electricity</text>
+        <text class="utility-price">{{electricityPrice}} CNY/kWh</text>
+      </view>
+      <view class="utility-item">
+        <text class="utility-type">Water</text>
+        <text class="utility-price">{{waterPrice}} CNY/ton</text>
+      </view>
+      <view class="utility-item">
+        <text class="utility-type">Avg Monthly Electricity</text>
+        <text class="utility-price">¥{{electricityCost}}</text>
+      </view>
+      <view class="utility-item">
+        <text class="utility-type">Avg Monthly Water</text>
+        <text class="utility-price">¥{{waterCost}}</text>
+      </view>
+      <view class="utility-item">
+        <text class="utility-type">Avg Monthly Total</text>
+        <text class="utility-price">¥{{totalUtilityCost}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Rental Tips -->
+  <view wx:if="{{currentCity}}" class="tips-section card">
+    <view class="section-header">
+      <text class="section-title">💡 Rental Tips</text>
+    </view>
+    <view class="tips-list">
+      <view class="tip-row">
+        <view class="tip-bullet">1.</view>
+        <view class="tip-content">Always check the property certificate before renting to verify the landlord's identity</view>
+      </view>
+      <view class="tip-row">
+        <view class="tip-bullet">2.</view>
+        <view class="tip-content">Read the contract terms carefully before signing, especially deposit refund and penalty clauses</view>
+      </view>
+      <view class="tip-row">
+        <view class="tip-bullet">3.</view>
+        <view class="tip-content">Take photos of the property condition before moving in to avoid disputes when moving out</view>
+      </view>
+      <view class="tip-row">
+        <view class="tip-bullet">4.</view>
+        <view class="tip-content">Confirm utility rate standards to avoid overcharging</view>
+      </view>
+      <view class="tip-row">
+        <view class="tip-bullet">5.</view>
+        <view class="tip-content">Choose certified agencies or platforms to avoid scams</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Certified Listing Platforms -->
+  <view class="platform-section">
+    <view class="section-header">
+      <text class="section-title">🔗 Certified Listing Platforms</text>
+    </view>
+
+    <view class="recommend-notice">
+      <view class="notice-icon">🔒</view>
+      <view class="notice-text">This platform only provides official listings and certified platform links, and does not participate in any transactions</view>
+    </view>
+
+    <view class="platform-list">
+      <view
+        class="platform-card card"
+        wx:for="{{officialPlatforms}}"
+        wx:key="name"
+        bindtap="goToPlatform"
+        data-platform="{{item}}"
+      >
+        <view class="platform-header">
+          <view class="platform-name">{{item.name}}</view>
+          <view class="platform-tag">{{item.tag}}</view>
+        </view>
+        <view class="platform-desc">{{item.desc}}</view>
+        <view class="platform-footer">
+          <view class="platform-label">Officially Certified</view>
+          <view class="platform-arrow">›</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Loading State -->
+  <view wx:if="{{isLoading}}" class="loading-section">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">Loading...</text>
+  </view>
+
+  <!-- No City Selected Prompt -->
+  <view wx:if="{{!currentCity && !isLoading}}" class="empty-section card">
+    <view class="empty-icon">🌍</view>
+    <text class="empty-title">Please select a city</text>
+    <text class="empty-desc">Select a city to view rental reference data for that area</text>
+    <button class="empty-button" bindtap="chooseCity">
+      Start Selecting
+    </button>
+  </view>
+</view>
+
+<!-- Province/City Selection Modal -->
+<view class="city-selector-modal" wx:if="{{showCitySelector}}">
+  <view class="modal-mask" bindtap="closeCitySelector"></view>
+  <view class="modal-content" catchtap="stopPropagation">
+    <view class="modal-header">
+      <text class="modal-title">Select City</text>
+      <view class="modal-close" bindtap="closeCitySelector">
+        <text>✕</text>
+      </view>
+    </view>
+
+    <view class="modal-body">
+      <!-- Province List -->
+      <view class="province-section" wx:if="{{!currentProvince}}">
+        <view class="section-label">Select Province</view>
+        <view class="province-grid">
+          <view class="province-item"
+                wx:for="{{provinceList}}"
+                wx:key="*this"
+                catchtap="selectProvince"
+                data-province="{{item}}">
+            <text class="province-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- City List -->
+      <view class="city-section" wx:if="{{currentProvince}}">
+        <view class="section-label">Select City</view>
+        <view class="city-grid">
+          <view class="city-item"
+                wx:for="{{cityList}}"
+                wx:key="*this"
+                catchtap="selectCity"
+                data-city="{{item}}">
+            <text class="city-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Bottom Action Bar -->
+    <view class="modal-footer" wx:if="{{currentProvince}}">
+      <view class="selected-info">
+        <text class="selected-label">Selected: </text>
+        <text class="selected-value">{{currentProvince}}</text>
+      </view>
+      <button class="back-btn" bindtap="backToProvince">
+        Back to Provinces
+      </button>
+    </view>
+  </view>
+</view>
+
+<!-- District Picker Popup -->
+<view class="picker-mask" wx:if="{{showDistrictPicker}}" bindtap="closeDistrictPicker">
+  <view class="picker-content">
+    <view class="picker-header">
+      <text class="picker-title">Select Region</text>
+      <view class="picker-close" catchtap="closeDistrictPicker">
+        <text>✕</text>
+      </view>
+    </view>
+    <scroll-view class="picker-list" scroll-y="true">
+      <view wx:for="{{availableDistricts}}" wx:key="*this">
+        <view class="picker-item"
+              catchtap="selectDistrict"
+              data-district="{{item}}">
+          <text class="picker-item-text">{{item}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

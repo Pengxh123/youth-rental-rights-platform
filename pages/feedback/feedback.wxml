@@ -1,0 +1,79 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="page-container">
+  
+
+  <!-- Feedback Content -->
+  <view class="feedback-content">
+    <view class="feedback-section">
+      <text class="section-title">Feedback Type</text>
+      <view class="type-list">
+        <view class="type-item {{feedbackType === 'bug' ? 'active' : ''}}" bindtap="selectType" data-type="bug">
+          <text class="type-icon">🐛</text>
+          <text class="type-text">Bug Report</text>
+        </view>
+        <view class="type-item {{feedbackType === 'suggestion' ? 'active' : ''}}" bindtap="selectType" data-type="suggestion">
+          <text class="type-icon">💡</text>
+          <text class="type-text">Feature Suggestion</text>
+        </view>
+        <view class="type-item {{feedbackType === 'experience' ? 'active' : ''}}" bindtap="selectType" data-type="experience">
+          <text class="type-icon">🎯</text>
+          <text class="type-text">User Experience</text>
+        </view>
+        <view class="type-item {{feedbackType === 'other' ? 'active' : ''}}" bindtap="selectType" data-type="other">
+          <text class="type-icon">📝</text>
+          <text class="type-text">Other</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="feedback-section">
+      <text class="section-title">Detailed Description</text>
+      <textarea
+        class="feedback-textarea"
+        placeholder="Please describe your issue or suggestion in detail. We take every piece of feedback seriously..."
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="500"
+        auto-height
+      />
+      <text class="char-count">{{content.length}}/500</text>
+    </view>
+
+    <view class="feedback-section">
+      <text class="section-title">Contact Info (Optional)</text>
+      <input
+        class="feedback-input"
+        type="text"
+        placeholder="Please enter your phone number or email so we can contact you"
+        value="{{contact}}"
+        bindinput="onContactInput"
+      />
+    </view>
+
+    <view class="feedback-section">
+      <text class="section-title">Upload Image (Optional)</text>
+      <view class="upload-area" bindtap="uploadImage">
+        <view class="upload-placeholder" wx:if="{{!image}}">
+          <text class="upload-icon">📷</text>
+          <text class="upload-text">Click to upload image</text>
+        </view>
+        <image class="upload-preview" src="{{image}}" mode="aspectFill" wx:else />
+        <text class="upload-remove" wx:if="{{image}}" bindtap="removeImage" catchtap="removeImage">✕</text>
+      </view>
+    </view>
+
+    <button class="submit-btn" bindtap="submitFeedback">Submit Feedback</button>
+  </view>
+
+  <!-- Feedback Guidelines -->
+  <view class="feedback-notice">
+    <text class="notice-title">Feedback Guidelines</text>
+    <text class="notice-text">1. Please describe your issue or suggestion in detail so we can better understand your needs</text>
+    <text class="notice-text">2. For bugs, screenshots or screen recordings are recommended</text>
+    <text class="notice-text">3. We will respond to your feedback within 1-3 business days</text>
+    <text class="notice-text">4. Thank you for your support! Your feedback is very important to us!</text>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="profile"></bottom-nav>
+</view>

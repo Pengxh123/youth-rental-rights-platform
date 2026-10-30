@@ -1,0 +1,232 @@
+<!-- Housing Verification Page -->
+<view class="page-container">
+  <!-- Header Selection Area -->
+  <view class="header-section">
+    <view class="city-selector" bindtap="chooseCity">
+      <text class="city-icon">📍</text>
+      <text class="city-name">{{currentCity}}</text>
+      <text class="arrow">▼</text>
+    </view>
+    <view class="district-selector {{currentDistrict ? 'active' : ''}}" bindtap="chooseDistrict">
+      <text class="district-name">{{currentDistrict || 'Select District'}}</text>
+      <text class="arrow">▼</text>
+    </view>
+  </view>
+
+  <!-- Basic data carddata card -->
+  <view class="section-title">Area Rental Data</view>
+  <view class="data-cards">
+    <view class="data-card">
+      <text class="data-label">Avg Rent</text>
+      <text class="data-value">¥{{areaData.avgPrice}}</text>
+      <text class="data-unit">/month</text>
+    </view>
+    <view class="data-card">
+      <text class="data-label">Typical Deposit</text>
+      <text class="data-value">{{areaData.depositRatio}}</text>
+      <text class="data-unit">months</text>
+    </view>
+    <view class="data-card">
+      <text class="data-label">Civil Utilities</text>
+      <text class="data-value">{{areaData.civilRatio}}</text>
+      <text class="data-unit">%</text>
+    </view>
+    <view class="data-card">
+      <text class="data-label">Amenities</text>
+      <text class="data-value">{{areaData.facilities}}</text>
+      <text class="data-unit">items</text>
+    </view>
+  </view>
+
+  <!-- Room Type Prices -->
+  <view class="section-title">Room Type Prices</view>
+  <view class="room-type-card">
+    <view class="room-type-item" wx:for="{{roomTypes}}" wx:key="type">
+      <view class="room-type-header">
+        <text class="room-type-name">{{item.name}}</text>
+        <text class="room-type-price">¥{{item.price}}/month</text>
+      </view>
+      <view class="room-type-info">
+        <text class="room-type-detail">{{item.area}}㎡</text>
+        <text class="room-type-detail">Deposit {{item.deposit}}</text>
+        <text class="room-type-detail">{{item.trend}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Utility price comparison -->
+  <view class="section-title">Utility Price Comparison</view>
+  <view class="price-compare-card">
+    <view class="compare-row">
+      <text class="compare-label">Type</text>
+      <text class="compare-label">Water (¥/m³)</text>
+      <text class="compare-label">Electricity (¥/kWh)</text>
+    </view>
+    <view class="compare-row civil">
+      <text class="compare-type">Civil</text>
+      <text class="compare-price">{{areaData.waterPrice.civil}}</text>
+      <text class="compare-price">{{areaData.elecPrice.civil}}</text>
+    </view>
+    <view class="compare-row commercial">
+      <text class="compare-type">Commercial</text>
+      <text class="compare-price">{{areaData.waterPrice.commercial}}</text>
+      <text class="compare-price">{{areaData.elecPrice.commercial}}</text>
+    </view>
+    <view class="compare-tip">
+      <text class="tip-icon">💡</text>
+      <text class="tip-text">Large price gap, always verify billing standards</text>
+    </view>
+  </view>
+
+  <!-- Scenario-based recommendations -->
+  <view class="section-title">Scenario-Based Recommendations</view>
+  <view class="scenario-cards">
+    <view class="scenario-item" bindtap="viewScenario" data-type="internship">
+      <view class="scenario-icon">🎓</view>
+      <view class="scenario-content">
+        <text class="scenario-title">Internship</text>
+        <text class="scenario-desc">Short-term, focus on convenience</text>
+      </view>
+      <text class="scenario-arrow">›</text>
+    </view>
+    <view class="scenario-item" bindtap="viewScenario" data-type="share">
+      <view class="scenario-icon">👥</view>
+      <view class="scenario-content">
+        <text class="scenario-title">Shared</text>
+        <text class="scenario-desc">Lower cost, match roommates</text>
+      </view>
+      <text class="scenario-arrow">›</text>
+    </view>
+    <view class="scenario-item" bindtap="viewScenario" data-type="alone">
+      <view class="scenario-icon">🏠</view>
+      <view class="scenario-content">
+        <text class="scenario-title">Solo</text>
+        <text class="scenario-desc">Privacy, focus on safety</text>
+      </view>
+      <text class="scenario-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- House viewing checklist -->
+  <view class="section-title">House Viewing Checklist</view>
+  <view class="checklist-card">
+    <view class="checklist-section">
+      <text class="checklist-title">📋 Basic Checks</text>
+      <view class="checklist-items">
+        <view class="checklist-item" wx:for="{{checklist.basic}}" wx:key="id">
+          <text class="check-icon">{{item.checked ? '✅' : '⭕'}}</text>
+          <text class="check-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="checklist-section">
+      <text class="checklist-title">🔒 Safety Checks</text>
+      <view class="checklist-items">
+        <view class="checklist-item" wx:for="{{checklist.safety}}" wx:key="id">
+          <text class="check-icon">{{item.checked ? '✅' : '⭕'}}</text>
+          <text class="check-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="checklist-section">
+      <text class="checklist-title">📝 Contract Checks</text>
+      <view class="checklist-items">
+        <view class="checklist-item" wx:for="{{checklist.contract}}" wx:key="id">
+          <text class="check-icon">{{item.checked ? '✅' : '⭕'}}</text>
+          <text class="check-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Verified Platforms -->
+  <view class="section-title">Verified Platforms</view>
+  <view class="platform-card">
+    <view class="platform-item official">
+      <view class="platform-icon">🏛️</view>
+      <view class="platform-content">
+        <text class="platform-title">Government Platform</text>
+        <text class="platform-desc">Official certified listings</text>
+      </view>
+      <button class="platform-btn" bindtap="openPlatform" data-url="gov">View</button>
+    </view>
+    <view class="platform-item">
+      <view class="platform-icon">🔍</view>
+      <view class="platform-content">
+        <text class="platform-title">Branded Platform</text>
+        <text class="platform-desc">Well-known services</text>
+      </view>
+      <button class="platform-btn" bindtap="openPlatform" data-url="brand">View</button>
+    </view>
+    <view class="platform-item">
+      <view class="platform-icon">🏢</view>
+      <view class="platform-content">
+        <text class="platform-title">Agency Alliance</text>
+        <text class="platform-desc">Licensed agencies</text>
+      </view>
+      <button class="platform-btn" bindtap="openPlatform" data-url="agency">View</button>
+    </view>
+  </view>
+
+  <!-- Bottom navigation -->
+  <bottom-nav currentPage="housing-verify"></bottom-nav>
+
+  <!-- District selection popup -->
+  <view class="district-picker-mask" wx:if="{{showDistrictPicker}}" bindtap="closeDistrictPicker">
+    <view class="district-picker-content" catchtap="">
+      <view class="picker-header">
+        <text class="picker-title">Select District</text>
+        <text class="picker-close" bindtap="closeDistrictPicker">✕</text>
+      </view>
+      <scroll-view class="picker-list" scroll-y>
+        <view class="picker-item {{currentDistrict === item ? 'selected' : ''}}"
+              wx:for="{{availableDistricts}}"
+              wx:key="*this"
+              bindtap="selectDistrict"
+              data-district="{{item}}">
+          <text class="picker-item-text">{{item}}</text>
+          <text class="picker-item-check" wx:if="{{currentDistrict === item}}">✓</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- Province selection popup -->
+  <view class="district-picker-mask" wx:if="{{showProvincePicker}}" bindtap="closeProvincePicker">
+    <view class="district-picker-content" catchtap="">
+      <view class="picker-header">
+        <text class="picker-title">Select Province</text>
+        <text class="picker-close" bindtap="closeProvincePicker">✕</text>
+      </view>
+      <scroll-view class="picker-list" scroll-y>
+        <view wx:for="{{provinceList}}" wx:key="*this">
+          <view class="picker-item"
+                bindtap="selectProvince"
+                data-province="{{item}}">
+            <text class="picker-item-text">{{item}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- City selection popup -->
+  <view class="district-picker-mask" wx:if="{{showCityPicker}}" bindtap="closeCityPicker">
+    <view class="district-picker-content" catchtap="">
+      <view class="picker-header">
+        <text class="picker-title">Select City - {{currentProvince}}</text>
+        <text class="picker-close" bindtap="closeCityPicker">✕</text>
+      </view>
+      <scroll-view class="picker-list" scroll-y>
+        <view wx:for="{{provinceCities}}" wx:key="*this">
+          <view class="picker-item {{currentCity === item ? 'selected' : ''}}"
+                bindtap="selectCity"
+                data-city="{{item}}">
+            <text class="picker-item-text">{{item}}</text>
+            <text class="picker-item-check" wx:if="{{currentCity === item}}">✓</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

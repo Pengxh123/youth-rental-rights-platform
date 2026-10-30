@@ -1,0 +1,290 @@
+/* pages/ai-assistant/ai-assistant.wxss */
+.page-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 200rpx;
+}
+
+/* Lawyer team info */
+.lawyer-info {
+  background: #fff;
+  padding: 30rpx;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.lawyer-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 50rpx;
+  background: linear-gradient(135deg, #40a9ff, #69c0ff);
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 24rpx;
+}
+
+.lawyer-details {
+  flex: 1;
+}
+
+.lawyer-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.lawyer-specialty {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.lawyer-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+}
+
+/* Chat area */
+.chat-container {
+  flex: 1;
+  padding: 0 20rpx;
+  max-height: 100vh;
+  overflow-y: auto;
+  margin-bottom: 5rpx;
+  padding-bottom: 100rpx;
+}
+
+.chat-messages {
+  min-height: 600rpx;
+}
+
+/* System message */
+.system-message {
+  text-align: center;
+  margin: 20rpx 0;
+}
+
+.system-text {
+  background: #f0f0f0;
+  padding: 12rpx 24rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  color: #666;
+  display: inline-block;
+  max-width: 80%;
+  line-height: 1.5;
+}
+
+/* Message item */
+.message {
+  display: flex;
+  margin-bottom: 20rpx;
+  align-items: flex-end;
+}
+
+.user-message {
+  flex-direction: row-reverse;
+}
+
+.lawyer-message {
+  flex-direction: row;
+}
+
+/* Message content */
+.message-text {
+  max-width: 70%;
+  padding: 20rpx 24rpx;
+  border-radius: 20rpx;
+  position: relative;
+  font-size: 28rpx;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.user-message .message-text {
+  background: linear-gradient(135deg, #40a9ff, #69c0ff);
+  color: #fff;
+  border-bottom-right-radius: 4rpx;
+  box-shadow: 0 2rpx 8rpx rgba(64, 169, 255, 0.2);
+}
+
+.lawyer-message .message-text {
+  background: #fff;
+  color: #333;
+  border-bottom-left-radius: 4rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+/* Bottom area container */
+.bottom-container {
+  position: fixed;
+  bottom: 160rpx;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+/* Input area */
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.input-field {
+  flex: 1;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background: #f5f7fa;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  margin-right: 16rpx;
+  border: none;
+  outline: none;
+}
+
+.send-btn {
+  width: 120rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #40a9ff, #69c0ff);
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 8rpx rgba(64, 169, 255, 0.3);
+}
+
+.send-btn[disabled] {
+  background: #d9d9d9;
+  box-shadow: none;
+}
+
+/* Bottom tips */
+.bottom-tip {
+  padding: 16rpx 30rpx;
+  background: #fafafa;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.tip-text {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+}
+
+/* Loading state */
+.loading-message {
+  display: flex;
+  margin-bottom: 30rpx;
+  align-items: flex-end;
+}
+
+.loading-text {
+  background: #fff;
+  padding: 20rpx 24rpx;
+  border-radius: 20rpx;
+  border-bottom-left-radius: 4rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  font-size: 24rpx;
+  color: #666;
+  margin-left: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120rpx;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+.dot {
+  font-size: 16rpx;
+  color: #40a9ff;
+  animation: pulse 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* FAQ */
+.faq-section {
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+  margin-bottom: 20rpx;
+}
+
+.faq-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.faq-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.faq-item {
+  background: #f5f7fa;
+  padding: 16rpx 24rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  background: #e6f7ff;
+  transform: translateY(-2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(64, 169, 255, 0.2);
+}
+
+.faq-text {
+  white-space: nowrap;
+}

@@ -1,0 +1,56 @@
+<!-- My All Rights Protection Records Page -->
+<view class="page-container">
+  <view class="records-container">
+    <view class="records-list" wx:if="{{records.length > 0}}">
+      <view class="record-card" wx:for="{{records}}" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+        <view class="record-header">
+          <view class="record-type {{item.type}}">
+            <text class="type-icon">{{item.typeIcon}}</text>
+            <text class="type-text">{{item.typeText}}</text>
+          </view>
+          <view class="record-status {{item.status}}">
+            <text class="status-dot"></text>
+            <text class="status-text">{{item.statusText}}</text>
+          </view>
+        </view>
+
+        <view class="record-content">
+          <text class="record-title">{{item.title}}</text>
+          <text class="record-desc">{{item.description}}</text>
+        </view>
+
+        <view class="record-info">
+          <view class="info-item">
+            <text class="info-icon">📅</text>
+            <text class="info-text">Application Time: {{item.createTime}}</text>
+          </view>
+          <view class="info-item">
+            <text class="info-icon">📋</text>
+            <text class="info-text">Order Number: {{item.orderNo}}</text>
+          </view>
+          <view class="info-item" wx:if="{{item.amount}}">
+            <text class="info-icon">💰</text>
+            <text class="info-text">Amount Involved: ¥{{item.amount}}</text>
+          </view>
+        </view>
+
+        <view class="progress-section">
+          <text class="progress-title">Processing Progress</text>
+          <view class="progress-track">
+            <view class="progress-bar" style="width: {{item.progress}}%;"></view>
+          </view>
+          <text class="progress-percent">{{item.progress}}%</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-records" wx:else>
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">No Rights Protection Records</text>
+      <button class="empty-btn" bindtap="goToApply">Apply for Rights Protection Now</button>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="rights-protect"></bottom-nav>
+</view>

@@ -1,0 +1,78 @@
+<!-- Topic Detail Page -->
+<view class="page-container">
+  <view class="author-card">
+      <image class="author-avatar" src="{{topic.avatar}}" mode="aspectFill" />
+      <view class="author-info">
+        <text class="author-name">{{topic.author}}</text>
+        <text class="topic-time">{{topic.createTime}}</text>
+      </view>
+      <view class="follow-btn" wx:if="{{!isFollowing}}" bindtap="followAuthor">
+        <text>+ Follow</text>
+      </view>
+    </view>
+
+    <view class="topic-content">
+      <text class="content-title">{{topic.title}}</text>
+
+      <view class="content-tags">
+        <text class="content-tag">{{topic.category}}</text>
+        <text class="content-tag" wx:for="{{topic.tags}}" wx:key="index">#{{item}}</text>
+      </view>
+
+      <text class="content-text" user-select>{{topic.content}}</text>
+
+      <view class="content-images" wx:if="{{topic.images && topic.images.length > 0}}">
+        <image class="content-image" wx:for="{{topic.images}}" wx:for-item="img" wx:key="index" src="{{img}}" mode="aspectFill" bindtap="previewImage" data-url="{{img}}" />
+      </view>
+    </view>
+
+    <view class="interaction-bar">
+      <view class="interaction-item" bindtap="toggleLike">
+        <text class="interaction-icon">{{isLiked ? '❤️' : '🤍'}}</text>
+        <text class="interaction-count">{{topic.likes || 0}}</text>
+      </view>
+      <view class="interaction-item" bindtap="scrollToComments">
+        <text class="interaction-icon">💬</text>
+        <text class="interaction-count">{{topic.comments || 0}}</text>
+      </view>
+      <view class="interaction-item" bindtap="toggleFavorite">
+        <text class="interaction-icon">{{isFavorited ? '⭐' : '☆'}}</text>
+        <text class="interaction-count">{{topic.favorites || 0}}</text>
+      </view>
+      <view class="interaction-item" bindtap="shareTopic">
+        <text class="interaction-icon">📤</text>
+        <text class="interaction-count">Share</text>
+      </view>
+    </view>
+
+    <view class="comments-section" id="comments">
+      <view class="comments-header">
+        <text class="comments-title">Comments {{commentCount}}</text>
+      </view>
+
+      <view class="comment-list">
+        <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+          <image class="comment-avatar" src="{{item.avatar}}" mode="aspectFill" />
+          <view class="comment-content">
+            <text class="comment-author">{{item.author}}</text>
+            <text class="comment-text">{{item.content}}</text>
+            <view class="comment-footer">
+              <text class="comment-time">{{item.time}}</text>
+              <view class="comment-actions">
+                <text class="comment-action" bindtap="likeComment" data-id="{{item.id}}">Like {{item.likes || 0}}</text>
+                <text class="comment-action" bindtap="replyComment" data-id="{{item.id}}" data-author="{{item.author}}">Reply</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="comment-input-bar">
+      <input class="comment-input" placeholder="{{replyTo ? 'Reply to ' + replyTo : 'Write a comment...'}}" value="{{commentText}}" bindinput="onCommentInput" />
+      <view class="input-actions">
+        <text class="cancel-reply" wx:if="{{replyTo}}" bindtap="cancelReply">Cancel</text>
+        <button class="send-btn" bindtap="sendComment" disabled="{{!commentText}}">Send</button>
+      </view>
+  </view>
+</view>

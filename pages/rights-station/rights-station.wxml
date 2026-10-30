@@ -1,0 +1,215 @@
+<!-- Rights Protection Station -->
+<navigation-bar title="Rights Protection" />
+
+<view class="container">
+  <view class="tab-bar">
+    <view 
+      class="tab-item {{activeTab === index ? 'active' : ''}}" 
+      wx:for="{{tabs}}" 
+      wx:key="index"
+      bindtap="onTabChange"
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <view class="tab-content" wx:if="{{activeTab === 0}}">
+    <view class="form-card card">
+      <view class="form-section">
+        <view class="section-title">Rights Type</view>
+        <picker mode="selector" range="{{rightsTypes}}" bindchange="onRightsTypeChange">
+          <view class="picker-box">
+            <text class="{{rightsType ? 'selected' : 'placeholder'}}">
+              {{rightsType || 'Select rights type'}}
+            </text>
+            <text class="arrow">›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-section">
+        <view class="section-title">Description</view>
+        <textarea 
+          class="text-input" 
+          placeholder="Please describe your issue in detail, including time, location, involved parties, etc."
+          value="{{description}}"
+          bindinput="onInput"
+          data-field="description"
+          maxlength="500"
+          auto-height
+        ></textarea>
+        <view class="char-count">{{description.length}}/500</view>
+      </view>
+
+      <view class="form-section">
+        <view class="section-title">Upload Evidence</view>
+        <view class="image-upload">
+          <view class="upload-item" wx:for="{{images}}" wx:key="*this">
+            <image class="upload-image" src="{{item}}" mode="aspectFill"></image>
+            <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">✕</view>
+          </view>
+          <view class="upload-btn" wx:if="{{images.length < 3}}" bindtap="chooseImage">
+            <view class="upload-icon">📷</view>
+            <view class="upload-text">Upload Image</view>
+          </view>
+        </view>
+        <view class="upload-tip">Max 3 images, jpg/png format</view>
+      </view>
+
+      <view class="form-section">
+        <view class="section-title">Contact Info</view>
+        <view class="anonymous-switch" bindtap="toggleAnonymous">
+          <view class="switch-info">
+            <view class="switch-label">Anonymous</view>
+            <view class="switch-desc">Protect personal info</view>
+          </view>
+          <view class="switch-toggle {{isAnonymous ? 'active' : ''}}">
+            <view class="toggle-dot"></view>
+          </view>
+        </view>
+
+        <view wx:if="{{!isAnonymous}}">
+          <input 
+            class="form-input" 
+            type="text" 
+            placeholder="Enter phone number"
+            value="{{contact}}"
+            bindinput="onInput"
+            data-field="contact"
+          />
+        </view>
+      </view>
+
+      <button class="btn-submit" bindtap="submitRights">Submit Application</button>
+    </view>
+
+    <view class="tips-card card">
+      <view class="section-title">💡 Guidelines</view>
+      <view class="tips-list">
+        <view class="tip-item">1. Please provide accurate and truthful information</view>
+        <view class="tip-item">2. Clear image evidence helps with your case</view>
+        <view class="tip-item">3. Anonymous submission does not affect processing</view>
+        <view class="tip-item">4. A case number will be generated after submission</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab-content" wx:if="{{activeTab === 1}}">
+    <view class="tools-grid">
+      <view 
+        class="tool-card card" 
+        wx:for="{{tools}}" 
+        wx:key="title"
+        bindtap="useTool"
+        data-action="{{item.action}}"
+      >
+        <view class="tool-icon">{{item.icon}}</view>
+        <view class="tool-title">{{item.title}}</view>
+        <view class="tool-desc">{{item.desc}}</view>
+        <view class="tool-arrow">›</view>
+      </view>
+    </view>
+
+    <view class="legal-card card">
+      <view class="section-title">⚖️ Key Legal Provisions</view>
+      <view class="legal-list">
+        <view class="legal-item">
+          <view class="legal-title">Civil Code Article 703</view>
+          <view class="legal-content">A lease contract is a contract whereby the lessor delivers the leased property to the lessee for use and benefit, and the lessee pays rent.</view>
+        </view>
+        <view class="legal-item">
+          <view class="legal-title">Civil Code Article 713</view>
+          <view class="legal-content">The lessee may request the lessor to make repairs within a reasonable time when the leased property needs repair.</view>
+        </view>
+        <view class="legal-item">
+          <view class="legal-title">Commercial Housing Lease Management Measures</view>
+          <view class="legal-content">The lessor shall not arbitrarily increase rent or recover the house without reason during the lease term.</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="process-card card">
+      <view class="section-title">📋 Rights Protection Process</view>
+      <view class="process-steps">
+        <view class="step-item">
+          <view class="step-number">1</view>
+          <view class="step-info">
+            <view class="step-title">Collect Evidence</view>
+            <view class="step-desc">Save contracts, payment receipts, chat records, etc.</view>
+          </view>
+        </view>
+        <view class="step-item">
+          <view class="step-number">2</view>
+          <view class="step-info">
+            <view class="step-title">Negotiate</view>
+            <view class="step-desc">First negotiate with landlord or agent</view>
+          </view>
+        </view>
+        <view class="step-item">
+          <view class="step-number">3</view>
+          <view class="step-info">
+            <view class="step-title">File Complaint</view>
+            <view class="step-desc">Report to housing authority or 12345 hotline</view>
+          </view>
+        </view>
+        <view class="step-item">
+          <view class="step-number">4</view>
+          <view class="step-info">
+            <view class="step-title">Legal Action</view>
+            <view class="step-desc">Take legal action if necessary</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab-content" wx:if="{{activeTab === 2}}">
+    <view class="empty-state" wx:if="{{myCases.length === 0}}">
+      <view class="empty-icon">📋</view>
+      <view class="empty-text">No records found</view>
+      <view class="empty-desc">Check progress after submitting application</view>
+      <button class="btn-create" bindtap="onTabChange" data-index="0">Apply Now</button>
+    </view>
+
+    <view class="case-list" wx:else>
+      <view 
+        class="case-card card" 
+        wx:for="{{myCases}}" 
+        wx:key="id"
+      >
+        <view class="case-header">
+          <view class="case-id">{{item.id}}</view>
+          <view class="case-status {{item.status === 'Processing' ? 'pending' : item.status === 'Completed' ? 'success' : 'warning'}}">
+            {{item.status}}
+          </view>
+        </view>
+
+        <view class="case-content">
+          <view class="case-type">
+            <view class="type-label">Type:</view>
+            <view class="type-value">{{item.type}}</view>
+          </view>
+          <view class="case-desc">{{item.description}}</view>
+          <view class="case-time">{{item.createTime}}</view>
+        </view>
+
+        <view class="case-progress">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{item.progress}}%"></view>
+          </view>
+          <view class="progress-text">Progress {{item.progress}}%</view>
+        </view>
+
+        <view class="case-actions">
+          <button class="btn-small" bindtap="viewCaseDetail" data-id="{{item.id}}">View Details</button>
+          <button class="btn-small" bindtap="addEvidence" data-id="{{item.id}}">Add Evidence</button>
+        </view>
+      </view>
+    </view>
+
+    <view class="service-contact" wx:if="{{myCases.length > 0}}">
+      <button class="btn-service" bindtap="contactService">Contact Support</button>
+    </view>
+  </view>
+</view>

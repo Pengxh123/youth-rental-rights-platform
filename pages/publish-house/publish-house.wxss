@@ -1,0 +1,397 @@
+/* pages/publish-house/publish-house.wxss */
+.page-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 180rpx;
+}
+
+.form-container {
+  padding: 20rpx;
+}
+
+/* Form section */
+.form-section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 28rpx;
+  position: relative;
+  padding-left: 24rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background: linear-gradient(180deg, #ffc107 0%, #ffeb3b 100%);
+  border-radius: 4rpx;
+}
+
+.hint {
+  font-size: 24rpx;
+  color: #999;
+  font-weight: 400;
+}
+
+/* Form item */
+.form-item {
+  margin-bottom: 28rpx;
+}
+
+.form-item.required .label::after {
+  content: '*';
+  color: #ff4d4f;
+  margin-left: 4rpx;
+}
+
+.form-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.form-row .form-item {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.input {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.unit {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 12rpx;
+}
+
+/* Price input */
+.price-input {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 0 24rpx;
+  height: 80rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+}
+
+.price-input .currency {
+  font-size: 32rpx;
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.price-input .input {
+  flex: 1;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+}
+
+/* Picker */
+.picker {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #999;
+  font-size: 28rpx;
+}
+
+.picker.has-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.picker .arrow {
+  font-size: 20rpx;
+  color: #ccc;
+}
+
+/* Location selection */
+.location-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #fffbf0 0%, #fff3cd 100%);
+  border: 2rpx solid rgba(255, 193, 7, 0.3);
+  border-radius: 12rpx;
+}
+
+.location-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.location-text.has-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.location-icon {
+  font-size: 36rpx;
+  margin-left: 12rpx;
+}
+
+/* Image list */
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.image-item {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.image-delete {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.image-upload {
+  width: 200rpx;
+  height: 200rpx;
+  border: 2rpx dashed #ddd;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  background: #fafafa;
+}
+
+.upload-icon {
+  font-size: 48rpx;
+  color: #ddd;
+}
+
+.upload-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* Amenities */
+.facility-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16rpx;
+}
+
+.facility-item {
+  position: relative;
+  padding: 20rpx 12rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  transition: all 0.3s ease;
+}
+
+.facility-item.selected {
+  background: linear-gradient(135deg, #fffbf0 0%, #fff3cd 100%);
+  border: 2rpx solid #ffc107;
+}
+
+.facility-icon {
+  font-size: 36rpx;
+}
+
+.facility-label {
+  font-size: 22rpx;
+  color: #666;
+}
+
+.facility-check {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  width: 32rpx;
+  height: 32rpx;
+  background: #ffc107;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18rpx;
+  font-weight: 700;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  min-height: 200rpx;
+  padding: 24rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+/* Bottom buttons */
+.footer-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 28rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 20rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary,
+.btn-primary {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+  color: #333;
+  box-shadow: 0 8rpx 20rpx rgba(255, 193, 7, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+}
+
+/* Draft panel */
+.draft-panel {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.draft-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.draft-list {
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+
+.draft-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.draft-item:last-child {
+  border-bottom: none;
+}
+
+.draft-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.draft-item-title {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.draft-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.draft-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.draft-btn {
+  padding: 8rpx 20rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.draft-btn.delete {
+  color: #ff4d4f;
+}

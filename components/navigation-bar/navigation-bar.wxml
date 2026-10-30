@@ -1,0 +1,64 @@
+<view class="weui-navigation-bar {{extClass}}">
+  <view class="weui-navigation-bar__inner {{ios ? 'ios' : 'android'}}" style="color: {{color}}; background: {{background}}; {{displayStyle}}; {{innerPaddingRight}}; {{safeAreaTop}};">
+
+    <!-- Left buttons -->
+    <view class='weui-navigation-bar__left' style="{{leftWidth}};">
+      <block wx:if="{{back || homeButton}}">
+        <!-- Back to previous page -->
+        <block wx:if="{{back}}">
+          <view class="weui-navigation-bar__buttons weui-navigation-bar__buttons_goback">
+            <view
+              bindtap="back"
+              class="weui-navigation-bar__btn_goback_wrapper"
+              hover-class="weui-active"
+              hover-stay-time="100"
+              aria-role="button"
+              aria-label="Back"
+            >
+              <view class="weui-navigation-bar__button weui-navigation-bar__btn_goback"></view>
+            </view>
+          </view>
+        </block>
+        <!-- Back to home -->
+        <block wx:if="{{homeButton}}">
+          <view class="weui-navigation-bar__buttons weui-navigation-bar__buttons_home">
+            <view
+              bindtap="home"
+              class="weui-navigation-bar__btn_home_wrapper"
+              hover-class="weui-active"
+              aria-role="button"
+              aria-label="Home"
+            >
+              <view class="weui-navigation-bar__button weui-navigation-bar__btn_home"></view>
+            </view>
+          </view>
+        </block>
+      </block>
+      <block wx:else>
+        <slot name="left"></slot>
+      </block>
+    </view>
+
+    <!-- Title -->
+    <view class='weui-navigation-bar__center'>
+      <view wx:if="{{loading}}" class="weui-navigation-bar__loading" aria-role="alert">
+        <view
+          class="weui-loading"
+          aria-role="img"
+          aria-label="Loading"
+        ></view>
+      </view>
+      <block wx:if="{{title}}">
+        <text>{{title}}</text>
+      </block>
+      <block wx:else>
+        <slot name="center"></slot>
+      </block>
+    </view>
+    
+    <!-- Right placeholder -->
+    <view class='weui-navigation-bar__right'>
+      <slot name="right"></slot>
+    </view>
+  </view>
+</view>

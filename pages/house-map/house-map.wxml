@@ -1,0 +1,265 @@
+<!-- House Map Page -->
+<view class="page-container">
+  <view class="map-container" wx:if="{{viewMode === 'map'}}">
+    <map
+      id="houseMap"
+      class="house-map"
+      longitude="{{longitude}}"
+      latitude="{{latitude}}"
+      scale="{{scale}}"
+      markers="{{markers}}"
+      polyline="{{polyline}}"
+      circles="{{circles}}"
+      show-location="{{showLocation}}"
+      bindmarkertap="onMarkerTap"
+      bindregionchange="onRegionChange"
+    >
+      <cover-view slot="callout">
+        <cover-view wx:for="{{markers}}" wx:key="id" class="marker-callout">
+          <cover-view class="callout-content">{{item.callout.content}}</cover-view>
+        </cover-view>
+      </cover-view>
+    </map>
+    
+    <view class="map-toolbar">
+      <view class="toolbar-item" bindtap="relocate">
+        <text class="toolbar-icon">📍</text>
+        <text class="toolbar-text">Relocate</text>
+      </view>
+      <view class="toolbar-item" bindtap="publishHouse">
+        <text class="toolbar-icon">➕</text>
+        <text class="toolbar-text">Publish</text>
+      </view>
+      <view class="toolbar-item" bindtap="switchViewMode" data-mode="list">
+        <text class="toolbar-icon">📋</text>
+        <text class="toolbar-text">List View</text>
+      </view>
+    </view>
+    
+    <view class="location-card">
+      <view class="location-info">
+        <text class="location-icon">📍</text>
+        <view class="location-address">
+          <text class="address-text">{{currentLocation.address}}</text>
+          <text class="district-text">{{currentLocation.district}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="radius-picker">
+      <text class="radius-label">Search Range:</text>
+      <picker mode="selector" range="{{radiusOptions}}" range-key="label" bindchange="onRadiusChange">
+        <view class="picker-value">
+          <text>{{radiusOptions[0].label}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <view class="house-stats" bindtap="switchViewMode" data-mode="list">
+      <text class="stats-text">Found <text class="stats-number">{{houseList.length}}</text> properties</text>
+    </view>
+  </view>
+  
+  <view class="list-container" wx:if="{{viewMode === 'list'}}">
+    <view class="list-toolbar">
+      <view class="back-btn" bindtap="navigateBack">
+        <text class="back-icon">←</text>
+        <text class="back-text">Back to Map</text>
+      </view>
+      <view class="search-box">
+        <text class="search-icon">🔍</text>
+        <input 
+          class="search-input" 
+          placeholder="Search address, community" 
+          bindinput="onSearch"
+          value="{{filters.keyword}}"
+        />
+      </view>
+      
+      <view class="filter-group">
+        <picker mode="selector" range="{{rentTypeOptions}}" range-key="label" bindchange="onFilterChange" data-field="rentType">
+          <view class="filter-btn {{filters.rentType ? 'active' : ''}}">
+            <text>Rent Type</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+        
+        <picker mode="selector" range="{{houseTypeOptions}}" range-key="label" bindchange="onFilterChange" data-field="houseType">
+          <view class="filter-btn {{filters.houseType ? 'active' : ''}}">
+            <text>Rooms</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+        
+        <picker mode="selector" range="{{priceRangeOptions}}" range-key="label" bindchange="onFilterChange" data-field="priceRange">
+          <view class="filter-btn {{filters.priceRange ? 'active' : ''}}">
+            <text>Price</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+        
+        <picker mode="selector" range="{{radiusOptions}}" range-key="label" bindchange="onRadiusChange">
+          <view class="filter-btn">
+            <text>Range</text>
+            <text class="arrow">▼</text>
+          </view>
+        </picker>
+      </view>
+      
+      <view class="view-switcher">
+        <view class="switch-item active" bindtap="switchViewMode" data-mode="list">
+          <text>📋</text>
+        </view>
+        <view class="switch-item" bindtap="switchViewMode" data-mode="map">
+          <text>🗺️</text>
+        </view>
+      </view>
+    </view>
+    
+    <scroll-view class="house-list" scroll-y="{{true}}">
+      <view wx:if="{{houseList.length === 0}}" class="empty-state">
+        <text class="empty-icon">🏠</text>
+        <text class="empty-text">No properties nearby</text>
+        <text class="empty-hint">Adjust search range or try again later</text>
+      </view>
+      
+      <view 
+        class="house-item" 
+        wx:for="{{houseList}}" 
+        wx:key="id" 
+        bindtap="viewHouseDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="house-images">
+          <image src="{{item.images[0]}}" mode="aspectFill" class="house-image"/>
+          <view wx:if="{{item.status === 'rented'}}" class="status-badge rented">Rented</view>
+          <view wx:if="{{item.rentType === 'whole'}}" class="type-badge">Entire</view>
+          <view wx:if="{{item.rentType === 'share'}}" class="type-badge">Shared</view>
+          <view wx:if="{{item.rentType === 'single'}}" class="type-badge">Single</view>
+        </view>
+        
+        <view class="house-info">
+          <text class="house-title">{{item.title}}</text>
+          
+          <view class="house-tags">
+            <text class="tag">{{item.houseType}}BR</text>
+            <text class="tag">{{item.area}}㎡</text>
+            <text class="tag">{{item.floor}}</text>
+            <text class="tag">{{item.decoration}}</text>
+          </view>
+          
+          <view class="house-location">
+            <text class="location-icon">📍</text>
+            <text class="location-text">{{item.address}}</text>
+          </view>
+          
+          <view class="house-price">
+            <text class="price-value">¥{{item.price}}</text>
+            <text class="price-unit">/month</text>
+            <text class="publish-time">{{item.createTime}}</text>
+          </view>
+        </view>
+        
+        <view class="house-actions">
+          <view class="action-btn contact" bindtap="contactLandlord" data-phone="{{item.publisher.phone}}">
+            <text>📞</text>
+          </view>
+          <view class="action-btn favorite" bindtap="favoriteHouse" data-id="{{item.id}}">
+            <text>⭐</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    
+    <view wx:if="{{loading}}" class="loading-overlay">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">Loading...</text>
+    </view>
+  </view>
+  
+  <view class="detail-modal" wx:if="{{showDetail && selectedHouse}}">
+    <view class="modal-mask" bindtap="closeDetail"></view>
+    <view class="modal-content">
+      <view class="modal-close" bindtap="closeDetail">
+        <text>✕</text>
+      </view>
+      
+      <view class="detail-header">
+        <text class="detail-title">{{selectedHouse.title}}</text>
+        <view class="detail-price">
+          <text class="price-value">¥{{selectedHouse.price}}</text>
+          <text class="price-unit">/month</text>
+        </view>
+      </view>
+      
+      <scroll-view class="detail-images" scroll-x="{{true}}">
+        <image 
+          wx:for="{{selectedHouse.images}}" 
+          wx:key="index"
+          src="{{item}}" 
+          mode="aspectFill" 
+          class="detail-image"
+        />
+      </scroll-view>
+      
+      <view class="detail-basic">
+        <view class="basic-item">
+          <text class="basic-label">Rooms:</text>
+          <text class="basic-value">{{selectedHouse.houseType}}BR</text>
+        </view>
+        <view class="basic-item">
+          <text class="basic-label">Area:</text>
+          <text class="basic-value">{{selectedHouse.area}}㎡</text>
+        </view>
+        <view class="basic-item">
+          <text class="basic-label">Floor:</text>
+          <text class="basic-value">{{selectedHouse.floor}}</text>
+        </view>
+        <view class="basic-item">
+          <text class="basic-label">Decoration:</text>
+          <text class="basic-value">{{selectedHouse.decoration}}</text>
+        </view>
+      </view>
+      
+      <view class="detail-facilities">
+        <text class="facilities-title">Facilities</text>
+        <view class="facilities-list">
+          <text wx:for="{{selectedHouse.facilities}}" wx:key="index" class="facility-tag">
+            {{item}}
+          </text>
+        </view>
+      </view>
+      
+      <view class="detail-address">
+        <text class="address-icon">📍</text>
+        <text class="address-text">{{selectedHouse.address}}</text>
+        <text class="distance-text">{{selectedHouse.distance}}m away</text>
+      </view>
+      
+      <view class="detail-description">
+        <text class="description-title">Description</text>
+        <text class="description-text">{{selectedHouse.description}}</text>
+      </view>
+      
+      <view class="detail-publisher">
+        <image src="{{selectedHouse.publisher.avatar}}" mode="aspectFill" class="publisher-avatar"/>
+        <view class="publisher-info">
+          <text class="publisher-name">{{selectedHouse.publisher.name}}</text>
+          <text class="publisher-phone">{{selectedHouse.publisher.phone}}</text>
+        </view>
+      </view>
+      
+      <view class="detail-actions">
+        <button class="action-btn-secondary" bindtap="favoriteHouse" data-id="{{selectedHouse.id}}">
+          ⭐ Favorite
+        </button>
+        <button class="action-btn-primary" bindtap="contactLandlord" data-phone="{{selectedHouse.publisher.phone}}">
+          📞 Contact Landlord
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <bottom-nav currentPage="house-map"></bottom-nav>
+</view>

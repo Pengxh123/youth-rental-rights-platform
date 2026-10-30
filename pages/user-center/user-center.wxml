@@ -1,0 +1,126 @@
+<!-- User Center Page -->
+<navigation-bar title="User Center" />
+
+<view class="container">
+  <!-- User Info Card -->
+  <view class="user-header">
+    <view class="user-card">
+      <view class="avatar-box" bindtap="editProfile">
+        <image 
+          class="avatar" 
+          src="{{isLogin ? userInfo.avatar : '/images/default-avatar.png'}}"
+          mode="aspectFill"
+        ></image>
+        <view class="avatar-edit" wx:if="{{isLogin}}">✎</view>
+      </view>
+      
+      <view class="user-info">
+        <view class="nickname">{{userInfo.nickname}}</view>
+        <view class="user-desc" wx:if="{{isLogin}}">
+          <text class="tag">Verified</text>
+          <text class="phone">{{userInfo.phone || 'Complete phone'}}</text>
+        </view>
+        <view class="login-btn" wx:else bindtap="login">Login</view>
+      </view>
+      
+      <view class="logout-btn" wx:if="{{isLogin}}" bindtap="logout">Logout</view>
+    </view>
+
+    <!-- Statistics -->
+    <view class="stats-grid">
+      <view class="stat-item" bindtap="navigateTo" data-page="/pages/rights-station/rights-station">
+        <view class="stat-value">{{stats.rightsCases}}</view>
+        <view class="stat-label">Rights</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.checkReports}}</view>
+        <view class="stat-label">Verify</view>
+      </view>
+      <view class="stat-item" bindtap="navigateTo" data-page="/pages/discussion/discussion">
+        <view class="stat-value">{{stats.posts}}</view>
+        <view class="stat-label">Posts</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{stats.favorites}}</view>
+        <view class="stat-label">Favorites</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Notifications -->
+  <view class="notification-section card">
+    <view class="section-header">
+      <view class="section-title">Notifications</view>
+      <view class="mark-read" bindtap="markAllRead">Mark All Read</view>
+    </view>
+    
+    <view class="notification-list">
+      <view 
+        class="notification-item {{item.isRead ? 'read' : ''}}" 
+        wx:for="{{notifications}}" 
+        wx:key="id"
+        bindtap="viewNotification"
+        data-id="{{item.id}}"
+      >
+        <view class="notification-icon">{{item.type === 'Rights' ? '⚖️' : item.type === 'Interaction' ? '💬' : '📢'}}</view>
+        <view class="notification-content">
+          <view class="notification-title">{{item.title}}</view>
+          <view class="notification-text">{{item.content}}</view>
+          <view class="notification-time">{{item.time}}</view>
+        </view>
+        <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Feature List -->
+  <view class="feature-section">
+    <view class="section-title">My Services</view>
+    <view class="feature-list">
+      <view 
+        class="feature-item" 
+        wx:for="{{featureList}}" 
+        wx:key="title"
+        bindtap="navigateTo"
+        data-page="{{item.page}}"
+      >
+        <view class="feature-icon">{{item.icon}}</view>
+        <view class="feature-info">
+          <view class="feature-title">{{item.title}}</view>
+          <view class="feature-desc">{{item.desc}}</view>
+        </view>
+        <view class="feature-badge" wx:if="{{item.badge > 0}}">{{item.badge}}</view>
+        <view class="feature-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Settings -->
+  <view class="settings-section">
+    <view class="section-title">Settings</view>
+    <view class="settings-list">
+      <view 
+        class="setting-item" 
+        wx:for="{{settingsList}}" 
+        wx:key="title"
+        bindtap="onSettingTap"
+        data-action="{{item.action}}"
+        data-title="{{item.title}}"
+      >
+        <view class="setting-icon">{{item.icon}}</view>
+        <view class="setting-info">
+          <view class="setting-title">{{item.title}}</view>
+          <view class="setting-desc">{{item.desc}}</view>
+        </view>
+        <view class="setting-value" wx:if="{{item.value}}">{{item.value}}</view>
+        <view class="setting-arrow" wx:else>›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Version Info -->
+  <view class="version-info">
+    <view class="version-text">Version v1.0.0</view>
+    <view class="copyright">Youth Rental Rights Platform © 2026</view>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+<!-- AI Assistant Page -->
+<view class="page-container">
+
+  <!-- FAQ Section -->
+  <view class="faq-section">
+    <text class="faq-title">Frequently Asked Questions</text>
+    <view class="faq-list">
+      <view wx:for="{{commonQuestions}}" wx:key="{{index}}" class="faq-item" bindtap="selectQuestion" data-question="{{item}}">
+        <text class="faq-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Chat Area -->
+  <view class="chat-container">
+
+    <!-- Chat Messages -->
+    <view class="chat-messages" id="chatMessages">
+      <!-- Message History -->
+      <view wx:for="{{messages}}" wx:key="{{item.timestamp}}" class="message {{item.type === 'user' ? 'user-message' : 'lawyer-message'}}">
+        <text class="message-text">{{item.content}}</text>
+      </view>
+
+      <!-- Loading State -->
+      <view wx:if="{{isLoading}}" class="loading-message">
+        <text class="loading-text">Thinking...</text>
+        <view class="loading-dots">
+          <text class="dot">●</text>
+          <text class="dot">●</text>
+          <text class="dot">●</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Container -->
+  <view class="bottom-container">
+    <!-- Input Area -->
+    <view class="input-container">
+      <input type="text" class="input-field" placeholder="Enter your question..." bindinput="onInput" value="{{inputText}}"/>
+      <button class="send-btn" bindtap="sendMessage" disabled="{{!inputText}}">Send</button>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="ai-assistant"></bottom-nav>
+</view>

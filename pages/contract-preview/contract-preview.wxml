@@ -1,0 +1,103 @@
+<!-- Contract Preview Page -->
+<view class="page-container">
+  <view class="contract-paper">
+    <view class="contract-title">Residential Lease Agreement</view>
+
+    <view class="contract-section">
+      <view class="section-title">Party A (Landlord)</view>
+      <view class="form-row">
+        <text class="label">Name:</text>
+        <view class="underline"></view>
+      </view>
+      <view class="form-row">
+        <text class="label">ID Number:</text>
+        <view class="underline"></view>
+      </view>
+      <view class="form-row">
+        <text class="label">Contact Number:</text>
+        <view class="underline"></view>
+      </view>
+    </view>
+
+    <view class="contract-section">
+      <view class="section-title">Party B (Tenant)</view>
+      <view class="form-row">
+        <text class="label">Name:</text>
+        <view class="underline"></view>
+      </view>
+      <view class="form-row">
+        <text class="label">ID Number:</text>
+        <view class="underline"></view>
+      </view>
+      <view class="form-row">
+        <text class="label">Contact Number:</text>
+        <view class="underline"></view>
+      </view>
+    </view>
+
+    <view class="contract-content">
+      <view class="article">
+        <view class="article-title">Article 1: Basic Property Information</view>
+        <view class="article-text">1. Party A agrees to lease their legally owned property to Party B, located at <view class="input-line"></view>, with a construction area of <view class="input-line"></view> square meters.</view>
+        <view class="article-text">2. The property is for residential purposes only. Party B shall not change the property's use without permission.</view>
+      </view>
+
+      <view class="article">
+        <view class="article-title">Article 2: Lease Term</view>
+        <view class="article-text">Lease term from <view class="input-line"></view> year <view class="input-line"></view> month <view class="input-line"></view> to <view class="input-line"></view> year <view class="input-line"></view> month <view class="input-line"></view>, totaling <view class="input-line"></view> months.</view>
+      </view>
+
+      <view class="article">
+        <view class="article-title">Article 3: Rent and Payment Method</view>
+        <view class="article-text">1. Monthly rent is RMB <view class="input-line"></view> Yuan (¥ <view class="input-line"></view>).</view>
+        <view class="article-text">2. Payment method is <view class="input-line"></view> (Monthly/Quarterly/Annual).</view>
+        <view class="article-text">3. First payment shall be made upon signing. Subsequent payments shall be made within <view class="input-line"></view> days before each period starts.</view>
+      </view>
+
+      <view class="article highlight">
+        <view class="article-title">Article 4: Deposit</view>
+        <view class="article-text">1. Party B shall pay Party A a deposit of RMB <view class="input-line"></view> Yuan (¥ <view class="input-line"></view>), equivalent to <view class="input-line"></view> months' rent.</view>
+        <view class="article-text">2. Upon lease expiration, if Party B has no breach, Party A shall refund the full deposit without interest within <view class="input-line"></view> days.</view>
+        <view class="article-text warning">3. Party A shall not withhold the deposit for any reason without justification.</view>
+      </view>
+
+      <view class="article highlight">
+        <view class="article-title">Article 5: Water, Electricity and Gas Fees</view>
+        <view class="article-text warning">1. Water fee calculated at <view class="input-line"></view> Yuan/cubic meter (Residential/Commercial).</view>
+        <view class="article-text warning">2. Electricity fee calculated at <view class="input-line"></view> Yuan/kWh (Residential/Commercial).</view>
+        <view class="article-text">3. Gas fee calculated according to local gas company standards.</view>
+        <view class="article-text warning">4. Party B pays based on actual usage. Party A shall not overcharge.</view>
+      </view>
+
+      <view class="article">
+        <view class="article-title">Article 6: Maintenance Responsibility</view>
+        <view class="article-text">1. Main structure and attached facilities shall be maintained by Party A;</view>
+        <view class="article-text">2. Damage caused by improper use shall be maintained by Party B.</view>
+      </view>
+
+      <view class="article">
+        <view class="article-title">Article 7: Breach of Contract</view>
+        <view class="article-text">1. Party A breach: Refund full deposit and compensate Party B's losses;</view>
+        <view class="article-text">2. Party B breach: Deposit will not be refunded.</view>
+      </view>
+
+      <view class="article">
+        <view class="article-title">Article 8: Others</view>
+        <view class="article-text">This contract is in two copies, each party holds one copy, effective from the date of signing.</view>
+      </view>
+    </view>
+
+    <view class="signature-section">
+      <view class="signature-box">
+        <view class="signature-label">Party A Signature:</view>
+        <view class="signature-line"></view>
+        <view class="signature-date">Date: <view class="input-line-mini"></view> year <view class="input-line-mini"></view> month <view class="input-line-mini"></view> day</view>
+      </view>
+      <view class="signature-box">
+        <view class="signature-label">Party B Signature:</view>
+        <view class="signature-line"></view>
+        <view class="signature-date">Date: <view class="input-line-mini"></view> year <view class="input-line-mini"></view> month <view class="input-line-mini"></view> day</view>
+      </view>
+    </view>
+  </view>
+</view>

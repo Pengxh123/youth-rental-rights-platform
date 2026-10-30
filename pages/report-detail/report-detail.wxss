@@ -1,0 +1,256 @@
+/* pages/report-detail/report-detail.wxss */
+.detail-card {
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 30rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.order-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  margin-bottom: 20rpx;
+}
+
+.order-label {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.order-number {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 16rpx 24rpx;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+}
+
+.status-badge.pending {
+  background: #fff7e6;
+  color: #faad14;
+}
+
+.status-badge.processing {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+
+.status-badge.success {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.status-badge.failed,
+.status-badge.cancelled {
+  background: #fff1f0;
+  color: #ff4d4f;
+}
+
+.status-icon {
+  font-size: 32rpx;
+}
+
+.status-text {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.info-section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.section-content {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.section-content.description {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+}
+
+.evidence-image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  background: #f0f0f0;
+}
+
+/* Progress timeline */
+.progress-section {
+  padding-top: 30rpx;
+  border-top: 2rpx solid #f0f0f0;
+  margin-top: 30rpx;
+}
+
+.progress-title {
+  display: block;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 30rpx;
+}
+
+.progress-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 24rpx;
+  position: relative;
+}
+
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 16rpx;
+  top: 48rpx;
+  bottom: -40rpx;
+  width: 2rpx;
+  background: #e8e8e8;
+}
+
+.timeline-item.completed::after {
+  background: #52c41a;
+}
+
+.timeline-dot {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: #e8e8e8;
+  margin-top: 4rpx;
+  flex-shrink: 0;
+}
+
+.timeline-item.completed .timeline-dot {
+  background: #52c41a;
+}
+
+.timeline-item.active .timeline-dot {
+  background: #1890ff;
+  animation: pulse 1.5s infinite;
+}
+
+.timeline-item.failed .timeline-dot {
+  background: #ff4d4f;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 16rpx rgba(24, 144, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0);
+  }
+}
+
+.timeline-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.timeline-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.timeline-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* Processing result */
+.result-section {
+  margin-top: 40rpx;
+  padding-top: 30rpx;
+  border-top: 2rpx solid #f0f0f0;
+}
+
+.result-title {
+  display: block;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.result-content {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+  padding: 20rpx;
+  background: #f5f7fa;
+  border-radius: 12rpx;
+}
+
+/* Bottom action bar */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.action-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border: none;
+}
+
+.action-btn.secondary {
+  background: #f5f7fa;
+  color: #333;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  color: #fff;
+}

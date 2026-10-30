@@ -1,0 +1,71 @@
+<!-- Scenario Guide Page -->
+<view class="page-container">
+  <!-- Header Navigation -->
+  <view class="nav-bar">
+    <view class="nav-back" bindtap="goBack">‹</view>
+    <text class="nav-title">{{scenarioInfo.title}}</text>
+    <view class="nav-placeholder"></view>
+  </view>
+
+  <!-- Scenario Introduction -->
+  <view class="scenario-header">
+    <view class="scenario-icon-large">{{scenarioInfo.icon}}</view>
+    <view class="scenario-info">
+      <text class="scenario-title">{{scenarioInfo.title}}</text>
+      <text class="scenario-desc">{{scenarioInfo.desc}}</text>
+    </view>
+  </view>
+
+  <!-- Rental Tips -->
+  <view class="section-card">
+    <view class="section-header">
+      <text class="section-title">💡 Rental Tips</text>
+    </view>
+    <view class="tips-list">
+      <view class="tip-item" wx:for="{{scenarioInfo.tips}}" wx:key="*this">
+        <text class="tip-bullet">•</text>
+        <text class="tip-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Evaluation Criteria -->
+  <view class="section-card">
+    <view class="section-header">
+      <text class="section-title">📊 Evaluation Criteria</text>
+    </view>
+    <view class="criteria-list">
+      <view class="criteria-item" wx:for="{{scenarioInfo.criteria}}" wx:key="name">
+        <view class="criteria-main">
+          <text class="criteria-name">{{item.name}}</text>
+          <text class="criteria-stars">{{item.value}}</text>
+        </view>
+        <text class="criteria-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Recommended Listings -->
+  <view class="section-card">
+    <view class="section-header">
+      <text class="section-title">✨ Recommended Listings</text>
+    </view>
+    <view class="recommend-list">
+      <view class="recommend-item" wx:for="{{scenarioInfo.recommend}}" wx:key="type">
+        <view class="recommend-header">
+          <text class="recommend-type">{{item.type}}</text>
+          <text class="recommend-price">{{item.price}}</text>
+        </view>
+        <view class="recommend-details">
+          <text class="recommend-area">Area: {{item.area}}</text>
+          <text class="recommend-reason">Reason: {{item.reason}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Bottom Action Bar -->
+  <view class="bottom-action">
+    <button class="action-btn primary" bindtap="goBack">Back to Housing Guide</button>
+  </view>
+</view>

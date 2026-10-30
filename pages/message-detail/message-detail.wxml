@@ -1,0 +1,66 @@
+<!-- pages/message-detail/message-detail.wxml -->
+<view class="page-container">
+  <!-- Page Header -->
+  <view class="page-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="back-icon">‹</text>
+      <text class="back-text">Back</text>
+    </view>
+    <text class="header-title">{{title}}</text>
+    <view class="header-right"></view>
+  </view>
+
+  <!-- Message Content -->
+  <view class="message-content">
+    <!-- Message Card -->
+    <view class="message-card">
+      <view class="message-header" wx:if="{{type === 'system'}}">
+        <text class="message-icon">📢</text>
+        <text class="message-title">What's New</text>
+      </view>
+      <text class="message-desc">{{message}}</text>
+      <text class="message-time">{{createTime}}</text>
+    </view>
+
+    <!-- Comments List (interactive messages only) -->
+    <view class="comments-card" wx:if="{{type === 'interactive'}}">
+      <view class="comments-header" bindtap="toggleComments">
+        <text class="comments-title">New Comments ({{comments.length}})</text>
+        <text class="toggle-icon">{{showComments ? '▼' : '▶'}}</text>
+      </view>
+      <view class="comments-list" wx:if="{{showComments}}">
+        <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+          <view class="comment-header">
+            <text class="comment-avatar">{{item.avatar}}</text>
+            <view class="comment-user">
+              <text class="comment-name">{{item.user}}</text>
+              <text class="comment-time">{{item.time}}</text>
+            </view>
+          </view>
+          <text class="comment-content">{{item.content}}</text>
+          <view class="comment-footer">
+            <view class="like-btn {{item.liked ? 'liked' : ''}}" bindtap="likeComment" data-id="{{item.id}}">
+              <text class="like-icon">{{item.liked ? '❤️' : '🤍'}}</text>
+              <text class="like-count">{{item.likes}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Action Buttons -->
+    <view class="action-buttons" wx:if="{{type === 'rights'}}">
+      <button class="action-btn primary" bindtap="goToRightsRecords">View Rights Records</button>
+      <button class="action-btn secondary" bindtap="goBack">Close</button>
+    </view>
+
+    <view class="action-buttons" wx:if="{{type === 'interactive'}}">
+      <button class="action-btn primary" bindtap="toggleComments">{{showComments ? 'Collapse Comments' : 'View Comments'}}</button>
+      <button class="action-btn secondary" bindtap="goBack">Close</button>
+    </view>
+
+    <view class="action-buttons" wx:if="{{type === 'system'}}">
+      <button class="action-btn primary" bindtap="goBack">Got it</button>
+    </view>
+  </view>
+</view>

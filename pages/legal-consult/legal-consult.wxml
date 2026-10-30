@@ -1,0 +1,201 @@
+<!-- Pro Bono Lawyer Consultation Page -->
+<view class="page-container">
+  <!-- Top Nav Bar -->
+  <view class="custom-navbar">
+    <text class="nav-title">Pro Bono Legal Consultation</text>
+  </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+
+  <!-- Lawyer Team Info -->
+  <view class="lawyer-info">
+    <view class="lawyer-avatar">
+      <image src="/images/lawyer-avatar.png" mode="aspectFill"></image>
+    </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+    <view class="lawyer-details">
+      <text class="lawyer-name">Pro Bono Legal Team</text>
+      <text class="lawyer-specialty">Rental Rights Professional Consultation</text>
+      <text class="lawyer-description">Free legal consultation, protecting youth rental rights</text>
+    </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+  </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+
+  <!-- Chat Container -->
+  <scroll-view class="chat-container" scroll-y="true" scroll-top="{{scrollTop}}" bindscrolltolower="onScrollToLower">
+    <block wx:for="{{chatMessages}}" wx:key="id">
+      <view class="{{item.isLawyer ? 'lawyer-message' : 'user-message'}} message">
+        <view class="message-content">
+          <text class="message-text">{{item.text}}</text>
+        </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+        <text class="message-time">{{item.time}}</text>
+      </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+    </block>
+    
+    <!-- Loading State -->
+    <view class="loading-container" wx:if="{{isLoading}}">
+      <view class="loading-spinner">
+        <text class="loading-text">Lawyer is thinking...</text>
+      </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+    </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+  </scroll-view>
+
+  <!-- Input Area -->
+  <view class="input-container">
+    <input 
+      class="input-box" 
+      placeholder="Enter your question..." 
+      value="{{inputText}}" 
+      bindinput="onInput"
+      bindconfirm="onSend"
+      auto-focus="{{false}}"
+    />
+    <button class="send-btn" bindtap="onSend">Send</button>
+  </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+
+  <!-- Bottom Tips Area -->
+  <view class="disclaimer-container" bindtap="showTips">
+    <text class="disclaimer-text">⚠️ This service is pro bono, for reference only, and does not constitute legal advice</text>
+    <text class="tips-text">Tap to view rental scam prevention tips</text>
+  </view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>
+</view>
+
+<!-- Scam Prevention Tips Popup -->
+<view class="tips-modal" wx:if="{{showTipsModal}}" bindtap="hideTips">
+  <view class="tips-content" catchtap="catchTouch">
+    <text class="tips-title">Rental Scam Prevention Tips</text>
+    <view class="tips-close" bindtap="hideTips">×</view>
+    <view wx:for="{{tipsData}}" wx:key="title" class="tips-item">
+      <text class="tips-item-title">{{item.title}}</text>
+      <text class="tips-item-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>

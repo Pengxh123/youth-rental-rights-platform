@@ -1,0 +1,110 @@
+<!-- Cost Calculator Page -->
+<view class="page-container">
+  <view class="calculator-form">
+    <view class="form-group">
+      <text class="form-label">Monthly Rent</text>
+      <input class="form-input" type="digit" placeholder="Enter monthly rent" value="{{monthlyRent}}" bindinput="onInputChange" data-field="monthlyRent" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">Property Fee (per month)</text>
+      <input class="form-input" type="digit" placeholder="Enter property fee" value="{{propertyFee}}" bindinput="onInputChange" data-field="propertyFee" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">Water Fee (per month)</text>
+      <input class="form-input" type="digit" placeholder="Enter water fee" value="{{waterFee}}" bindinput="onInputChange" data-field="waterFee" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">Electricity Fee (per month)</text>
+      <input class="form-input" type="digit" placeholder="Enter electricity fee" value="{{elecFee}}" bindinput="onInputChange" data-field="elecFee" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">Gas Fee (per month)</text>
+      <input class="form-input" type="digit" placeholder="Enter gas fee" value="{{gasFee}}" bindinput="onInputChange" data-field="gasFee" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">Internet Fee (per month)</text>
+      <input class="form-input" type="digit" placeholder="Enter internet fee" value="{{netFee}}" bindinput="onInputChange" data-field="netFee" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">Deposit Months</text>
+      <input class="form-input" type="number" placeholder="Enter deposit months" value="{{depositMonths}}" bindinput="onInputChange" data-field="depositMonths" />
+    </view>
+
+    <button class="calculate-btn" bindtap="calculate" loading="{{isLoading}}" disabled="{{isLoading}}">
+      {{isLoading ? 'Calculating...' : 'Calculate Costs'}}
+    </button>
+  </view>
+
+  <!-- Calculation Result -->
+  <view class="result-card" wx:if="{{showResult}}">
+    <view class="result-header">
+      <text class="result-title">Cost Summary</text>
+    </view>
+
+    <view class="period-tabs">
+      <view class="period-tab {{currentPeriod === 'month' ? 'active' : ''}}" bindtap="switchPeriod" data-period="month">Monthly</view>
+      <view class="period-tab {{currentPeriod === 'quarter' ? 'active' : ''}}" bindtap="switchPeriod" data-period="quarter">Quarterly</view>
+      <view class="period-tab {{currentPeriod === 'year' ? 'active' : ''}}" bindtap="switchPeriod" data-period="year">Yearly</view>
+    </view>
+
+    <view class="total-display">
+      <text class="total-label">{{periodLabel}} Total Cost</text>
+      <text class="total-amount">¥{{totalAmount}}</text>
+      <text class="total-note">Excluding deposit</text>
+    </view>
+
+    <view class="breakdown">
+      <view class="breakdown-item">
+        <text class="breakdown-label">Rent</text>
+        <text class="breakdown-value">¥{{breakdown.rent}}</text>
+      </view>
+      <view class="breakdown-item">
+        <text class="breakdown-label">Property Fee</text>
+        <text class="breakdown-value">¥{{breakdown.propertyFee}}</text>
+      </view>
+      <view class="breakdown-item" wx:if="{{breakdown.waterFee}}">
+        <text class="breakdown-label">Water</text>
+        <text class="breakdown-value">¥{{breakdown.waterFee}}</text>
+      </view>
+      <view class="breakdown-item" wx:if="{{breakdown.elecFee}}">
+        <text class="breakdown-label">Electricity</text>
+        <text class="breakdown-value">¥{{breakdown.elecFee}}</text>
+      </view>
+      <view class="breakdown-item">
+        <text class="breakdown-label">Internet</text>
+        <text class="breakdown-value">¥{{breakdown.netFee}}</text>
+      </view>
+      <view class="breakdown-item">
+        <text class="breakdown-label">Deposit</text>
+        <text class="breakdown-value">¥{{breakdown.deposit}}</text>
+      </view>
+    </view>
+
+    <!-- Cost Distribution -->
+    <view class="distribution-card">
+      <text class="card-title">Cost Distribution</text>
+      <view class="distribution-list">
+        <view class="distribution-item" wx:for="{{distribution}}" wx:key="name">
+          <view class="distribution-bar" style="width: {{item.percent}}%; background: {{item.color}};"></view>
+          <text class="distribution-label">{{item.name}}</text>
+          <text class="distribution-value">{{item.percent}}%</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Tips -->
+    <view class="tips-card">
+      <text class="tips-title">Tips</text>
+      <text class="tips-text">Remember to negotiate utilities rates and include them in your contract. Most disputes arise from unclear utility billing standards.</text>
+    </view>
+  </view>
+
+  <!-- Bottom Navigation -->
+  <bottom-nav currentPage="fee-calculator"></bottom-nav>
+</view>

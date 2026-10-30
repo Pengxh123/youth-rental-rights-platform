@@ -1,0 +1,74 @@
+<!-- Rights Protection Detail Page -->
+<view class="page-container">
+  <view class="detail-card">
+    <!-- Order Number -->
+    <view class="order-info">
+      <text class="order-label">Order Number</text>
+      <text class="order-number">{{report.orderNo}}</text>
+    </view>
+
+    <!-- Status Badge -->
+    <view class="status-badge {{report.status}}">
+      <text class="status-icon">{{report.statusIcon}}</text>
+      <text class="status-text">{{report.statusText}}</text>
+    </view>
+
+    <!-- Rights Type -->
+    <view class="info-section">
+      <text class="section-title">Rights Type</text>
+      <text class="section-content">{{report.typeText}}</text>
+    </view>
+
+    <!-- Rights Title -->
+    <view class="info-section">
+      <text class="section-title">Title</text>
+      <text class="section-content">{{report.title}}</text>
+    </view>
+
+    <!-- Description -->
+    <view class="info-section">
+      <text class="section-title">Description</text>
+      <text class="section-content description">{{report.description}}</text>
+    </view>
+
+    <!-- Evidence Images -->
+    <view class="info-section" wx:if="{{report.evidences && report.evidences.length > 0}}">
+      <text class="section-title">Evidence</text>
+      <view class="evidence-grid">
+        <image class="evidence-image" wx:for="{{report.evidences}}" wx:key="*this" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}" />
+      </view>
+    </view>
+
+    <!-- Submit Time -->
+    <view class="info-section">
+      <text class="section-title">Submit Time</text>
+      <text class="section-content">{{report.createTime}}</text>
+    </view>
+
+    <!-- Progress -->
+    <view class="progress-section">
+      <text class="progress-title">Progress</text>
+      <view class="progress-timeline">
+        <view class="timeline-item {{item.status}}" wx:for="{{progressSteps}}" wx:key="id">
+          <view class="timeline-dot"></view>
+          <view class="timeline-content">
+            <text class="timeline-title">{{item.title}}</text>
+            <text class="timeline-time" wx:if="{{item.time}}">{{item.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Result -->
+    <view class="result-section" wx:if="{{report.result}}">
+      <text class="result-title">Result</text>
+      <text class="result-content">{{report.result}}</text>
+    </view>
+  </view>
+
+  <!-- Bottom Action Bar -->
+  <view class="action-bar">
+    <button class="action-btn secondary" bindtap="contactService">Contact Service</button>
+    <button class="action-btn primary" bindtap="cancelReport" wx:if="{{report.status === 'pending'}}">Cancel Application</button>
+  </view>
+</view>

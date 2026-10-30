@@ -1,0 +1,49 @@
+<!-- Case Detail Page -->
+<view class="page-container">
+  <navigation-bar title="Case Detail" showBack="{{true}}" />
+
+  <view class="content-wrapper" wx:if="{{caseInfo}}">
+    <view class="case-card">
+      <view class="case-header">
+        <text class="case-type {{caseInfo.type}}">{{caseInfo.type}}</text>
+        <text class="case-status success">Success</text>
+      </view>
+      <text class="case-title">{{caseInfo.title}}</text>
+      <text class="case-desc">{{caseInfo.desc}}</text>
+      
+      <view class="case-amount-wrap">
+        <text class="case-amount-label">Recovered</text>
+        <text class="case-amount">¥{{caseInfo.amount}}</text>
+      </view>
+      
+      <view class="case-meta">
+        <text class="case-time">{{caseInfo.time}}</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">Process</view>
+      <view class="process-timeline">
+        <view class="process-item" wx:for="{{caseInfo.process}}" wx:key="index">
+          <view class="process-dot {{index === caseInfo.process.length - 1 ? 'active' : 'completed'}}"></view>
+          <view class="process-line" wx:if="{{index < caseInfo.process.length - 1}}"></view>
+          <view class="process-content">
+            <text class="process-title">{{item.title}}</text>
+            <text class="process-time">{{item.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="tips-section">
+      <view class="tips-title">Tips</view>
+      <text class="tips-text">If you encounter a similar situation, you can submit an application through the platform's rights protection service. The platform will assist you in protecting your legitimate rights.</text>
+      <button class="apply-btn" bindtap="applyRights">Apply Now</button>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text class="empty-icon">📋</text>
+    <text class="empty-text">Case not found</text>
+  </view>
+</view>
